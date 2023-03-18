@@ -3,12 +3,20 @@ type Props = {
   buttonText: string;
   buttonWidth: number;
   isActive: boolean;
+  onClick: () => void;
 };
-export default function Button({ buttonText, buttonWidth, isActive }: Props) {
+export default function Button({
+  buttonText,
+  buttonWidth,
+  onClick,
+  isActive = true,
+}: Props) {
   return (
     <>
       <button
-        className={`${styles.button} ${isActive && "inactive"}`}
+        onClick={onClick}
+        type="button"
+        className={`${styles.button} ${!isActive && "inactive"}`}
         style={{ width: `${buttonWidth}px` }}>
         {buttonText}
       </button>
