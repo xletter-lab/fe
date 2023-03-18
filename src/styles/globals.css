@@ -12,8 +12,13 @@
 
 * {
   font-family: "Pretendard-R";
+  color: black;
 }
 
 .bold {
   font-family: "Pretendard-SB";
+}
+
+:root {
+  --gray: #c8c8c8;
 }
