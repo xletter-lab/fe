@@ -1,10 +1,7 @@
-
-
 export default function Reading() {
-    return (
-      <>
-        <div>reading page</div>
-      </>
-    )
-  }
-  
+  return (
+    <>
+      <div>reading page</div>
+    </>
+  );
+}
