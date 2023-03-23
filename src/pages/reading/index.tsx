@@ -37,8 +37,27 @@ export default function Reading({ NovelId }: Props) {
   >();
   const [tempOptionId, setTempOptionId] = useState<number>(1);
 
+  const getLastContent = (selectedOption?: number) => {
+    console.log("last content");
+    let lastContent = currentContents.pop();
+    lastContent.options = lastContent.options.map((option) => {
+      return {
+        ...option,
+        isSelected: selectedOption === option.id,
+      };
+    });
+    // 다음 내용 불러오기
+    setCurrentContent([
+      ...currentContents,
+      lastContent,
+      {
+        id: tempOptionId,
+        contentText: "last",
+      },
+    ]);
+  };
+
   const getNextContent = (selectedOption?: number) => {
-    console.log("함수 진입", currentContents);
     // default 이후
     if (currentContents == undefined) {
       console.log("분기 진입");
@@ -84,9 +103,12 @@ export default function Reading({ NovelId }: Props) {
           },
         ]);
         // 그냥 옵션 아이디 안 겹치게
+        setTempOptionId(tempOptionId + 2);
       }
     }
   };
+
+  console.log("current content", currentContents);
 
   useEffect(() => {
     getNextContent();
@@ -97,20 +119,18 @@ export default function Reading({ NovelId }: Props) {
       <Title title="Title" />
       <div>
         {currentContents?.map((item, index) => {
-          if (index === currentContents.length - 1) {
-            <Content
-              key={`novelContent_${item.id}`}
-              novelDetail={item}
-              getNextContent={getNextContent}
-            />;
+          console.log("item index", index);
+          if (index === 2) {
+            return <Content key={`novelContent_${item.id}_${index}`} isLast />;
+          } else {
+            return (
+              <Content
+                key={`novelContent_${item.id}_${index}`}
+                novelDetail={item}
+                getNextContent={getNextContent}
+              />
+            );
           }
-          return (
-            <Content
-              key={`novelContent_${item.id}`}
-              novelDetail={item}
-              getNextContent={getNextContent}
-            />
-          );
         })}
       </div>
     </div>

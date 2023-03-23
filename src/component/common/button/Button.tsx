@@ -2,7 +2,7 @@ import styles from "./Button.module.css";
 type Props = {
   buttonText: string;
   buttonWidth: number;
-  isActive: boolean;
+  isActive?: boolean;
   onClick: () => void;
 };
 export default function Button({
