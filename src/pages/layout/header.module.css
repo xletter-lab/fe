@@ -1,6 +1,5 @@
-.headerLayout{
-    display: block;
+.xletter_logo{
     width: 100vw;
-    height: 120px;
-    border-bottom: 10px solid #000000;
+    height: 30px;
+    background-color: black;
 }

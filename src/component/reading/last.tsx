@@ -13,8 +13,7 @@ export default function Last() {
       <Button
         buttonText="평가 하러 가기"
         onClick={clickEvaluate}
-        buttonWidth={500}
-      />
+        />
     </div>
   );
 }
