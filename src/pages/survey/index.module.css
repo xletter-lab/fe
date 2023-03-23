@@ -1,0 +1,27 @@
+.button {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 40px;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 10px;
+}
+.back {
+  background: black;
+  border: 1px solid black;
+
+  color: white;
+}
+
+.next {
+  background: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  color: black;
+}

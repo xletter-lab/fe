@@ -11,6 +11,7 @@ export type SurveyType = {
   selected?: number;
   content?: string;
   type?: number;
+  questionType: number;
 };
 
 export type OptionType = {
@@ -26,6 +27,8 @@ export default function Survey({}: Props) {
       return item.content?.length > 0;
     }
   });
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+
   const router = useRouter();
   const changeOption = ({
     questionId,
@@ -57,8 +60,12 @@ export default function Survey({}: Props) {
       })
     );
   };
-  const clickComplete = () => {
-    console.log("버튼클릭", isValid);
+
+  const clickBack = () => {
+    setCurrentQuestion(currentQuestion - 1);
+  };
+  const clickNext = () => {
+    setCurrentQuestion(currentQuestion + 1);
     contents.forEach((item) => {
       if (item?.selected != undefined) {
         console.log(item.selected > -1);
@@ -79,51 +86,62 @@ export default function Survey({}: Props) {
       {
         id: 1,
         question: "첫 번째 질문 내용",
+        questionType: 1,
         options: [
-          { id: 1, text: "첫 번째 선택지" },
-          { id: 2, text: "두 번째 선택지" },
-          { id: 3, text: "세 번째 선택지" },
-          { id: 4, text: "기타" },
+          { id: 1, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 2, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 3, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 4, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
         ],
         selected: -1,
       },
       {
         id: 2,
         question: "두 번째 질문 내용",
+        questionType: 1,
         options: [
-          { id: 1, text: "첫 번째 선택지" },
-          { id: 2, text: "두 번째 선택지" },
-          { id: 3, text: "세 번째 선택지" },
-          { id: 4, text: "기타" },
+          { id: 1, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 2, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 3, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 4, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
         ],
         selected: -1,
       },
       {
         id: 3,
-        question: "세 번째 질문 내용(주관식)",
+        question: "세 번째 질문 내용",
+        questionType: 2,
         content: "",
       },
     ]);
   }, []);
+
   return (
     <div>
-      <div>설문조사</div>
-      <div>
-        {contents.map((item) => {
-          return (
-            <Question
-              key={`survey_qustion_${item.id}`}
-              item={item}
-              changeItem={changeOption}
-            />
-          );
-        })}
+      <div className="center">
+        <input type={"range"} />
+        <input type={"range"} />
       </div>
-      <Button
-        buttonText="설문 완료하기"
-        buttonWidth={500}
-        onClick={clickComplete}
-      />
+
+      <div>
+        <Question
+          key={`survey_qustion_${contents[currentQuestion]?.id}`}
+          item={contents[currentQuestion]}
+          changeItem={changeOption}
+        />
+      </div>
+      <div className="center">
+        <Button
+          buttonText="Back"
+          className={`button ${styles.back}`}
+          onClick={clickBack}
+        />
+        <Button
+          buttonText="Next"
+          className={`button ${styles.next}`}
+          onClick={clickNext}
+        />
+      </div>
     </div>
   );
 }

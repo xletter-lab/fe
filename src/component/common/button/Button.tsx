@@ -4,7 +4,8 @@ type Props = {
   buttonWidth?: number;
   isActive?: boolean;
   onClick: () => void;
-  className?:string;
+  className?: string;
+  children?: React.ReactNode;
 };
 export default function Button({
   buttonText,
@@ -12,14 +13,16 @@ export default function Button({
   onClick,
   className='',
   isActive = true,
+  
+  children,
 }: Props) {
   return (
     <>
       <button
         onClick={onClick}
         type="button"
-        className={`${styles.button} ${!isActive && "inactive"} ${className}`}
-        style={{ width: `${buttonWidth}px` }}>
+        disabled={!isActive}
+        className={`${styles.button} ${!isActive && "inactive"} ${className}`}>
         {buttonText}
       </button>
     </>
