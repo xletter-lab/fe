@@ -22,8 +22,8 @@ export default function DescriptiveQuestion({ item, changeItem }: Props) {
 
   return (
     <div>
-      <div>{item.question}</div>
-      <textarea value={item.content} onChange={onChangeItem} />
+      <div>{item?.question}</div>
+      <textarea value={item?.content} onChange={onChangeItem} />
     </div>
   );
 }

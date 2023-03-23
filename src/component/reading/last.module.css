@@ -1,11 +1,36 @@
+.outer_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 572px;
+  background-color: black;
+}
+
+.middle_container {
+  height: 0;
+}
+
 .container {
+  width: 100vw;
   display: flex;
   justify-content: center;
 }
 
 .text {
   color: white;
+  font-size: 35px;
+  margin-bottom: 54px;
+  display: flex;
+  justify-content: center;
 }
 
 .button {
+  background-color: var(--neon-green);
+  border-radius: 10px;
+  padding: 24px 40px;
+  gap: 10px;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  justify-content: center;
 }

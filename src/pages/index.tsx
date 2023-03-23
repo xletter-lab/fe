@@ -4,17 +4,19 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Header from "./layout/header";
 
-const inter = Inter({ subsets: ["latin"] });
 type HeaderProps = {
-  title: string;
-}
-export default function Home({ data: string }) {
+  children?: React.ReactNode;
+};
+export default function Home({ children }: HeaderProps) {
   const function1 = (varaibale: number) => {};
-
-  return (
-    <>
-      
-      
-    </>
-  );
+  if (children) {
+    return (
+      <>
+        <Header />
+        <Children />
+      </>
+    );
+  } else {
+    return <Main />;
+  }
 }
