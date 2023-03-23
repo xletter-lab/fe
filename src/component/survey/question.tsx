@@ -15,7 +15,7 @@ type Props = {
   }) => void;
 };
 export default function Question({ item, changeItem }: Props) {
-  if (item.options != undefined) {
+  if (item.type === 1) {
     return <RadioQuestion changeItem={changeItem} item={item} />;
   } else {
     return <DescriptiveQuestion changeItem={changeItem} item={item} />;

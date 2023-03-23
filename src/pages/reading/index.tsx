@@ -1,6 +1,7 @@
 import Content from "@/component/reading/content";
+import Last from "@/component/reading/last";
 import Title from "@/component/reading/title";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 
 type Props = {
@@ -24,7 +25,10 @@ export type NovelDetailType = {
   options?: OptionType[];
 };
 
+export const dummyContent =
+  "누구든지 체포 또는 구속을 당한 때에는 적부의 심사를 법원에 청구할 권리를 가진다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 이 헌법시행 당시의 법령과 조약은 이 헌법에 위배되지 아니하는 한 그 효력을 지속한다. 모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는 처벌·보안처분 또는 강제노역을 받지 아니한다. ";
 export default function Reading({ NovelId }: Props) {
+  const lastContentRef = useRef<HTMLDivElement>(null);
   // novel id로 default content, default options 불러오기
 
   // 불러온 내용 컴포넌트에 넣어주기
@@ -51,8 +55,8 @@ export default function Reading({ NovelId }: Props) {
       ...currentContents,
       lastContent,
       {
-        id: tempOptionId,
-        contentText: "last",
+        id: tempOptionId + 1,
+        contentText: dummyContent,
       },
     ]);
   };
@@ -64,11 +68,13 @@ export default function Reading({ NovelId }: Props) {
       setCurrentContent([
         {
           id: tempOptionId,
-          contentText:
-            "Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.",
+          contentText: dummyContent,
           options: [
-            { id: tempOptionId, text: "선택지1" },
-            { id: tempOptionId + 1, text: "선택지2" },
+            { id: tempOptionId, text: "A가 지금 당장 죽는다" },
+            {
+              id: tempOptionId + 1,
+              text: "A,B 다 같이 죽는다. C는 다시 살아난다",
+            },
           ],
         },
       ]);
@@ -94,11 +100,13 @@ export default function Reading({ NovelId }: Props) {
           lastContent,
           {
             id: tempOptionId,
-            contentText:
-              "Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.",
+            contentText: dummyContent,
             options: [
-              { id: tempOptionId, text: "선택지1" },
-              { id: tempOptionId + 1, text: "선택지2" },
+              { id: tempOptionId, text: "A가 지금 당장 죽는다" },
+              {
+                id: tempOptionId + 1,
+                text: "A,B 다 같이 죽는다. C는 다시 살아난다",
+              },
             ],
           },
         ]);
@@ -115,23 +123,51 @@ export default function Reading({ NovelId }: Props) {
   }, []);
 
   return (
-    <div className={styles.novelContentContainer}>
-      <Title title="Title" />
+    <div>
       <div>
-        {currentContents?.map((item, index) => {
-          console.log("item index", index);
-          if (index === 2) {
-            return <Content key={`novelContent_${item.id}_${index}`} isLast />;
-          } else {
-            return (
-              <Content
-                key={`novelContent_${item.id}_${index}`}
-                novelDetail={item}
-                getNextContent={getNextContent}
-              />
-            );
-          }
-        })}
+        <div className={styles.novelContentContainer}>
+          <div className={styles.titleContentContainer}>
+            {/*title*/}
+            <div className={styles.ContentContainer}>
+              <Title title="회차 제목" />
+            </div>
+            {/*content*/}
+            <div>
+              {currentContents?.map((item, index) => {
+                console.log(
+                  "item index",
+                  index,
+                  "content length",
+                  currentContents.length
+                );
+                if (index === currentContents.length - 1) {
+                  return (
+                    <Content
+                      ref={lastContentRef}
+                      key={`novelContent_${item.id}_${index}`}
+                      novelDetail={item}
+                      getNextContent={
+                        index === 1 ? getLastContent : getNextContent
+                      }
+                      isLast={index === 2}
+                    />
+                  );
+                } else {
+                  return (
+                    <Content
+                      key={`novelContent_${item.id}_${index}`}
+                      novelDetail={item}
+                      getNextContent={getNextContent}
+                      isLast={index === 2}
+                    />
+                  );
+                }
+              })}
+            </div>
+          </div>
+        </div>
+        {/*last*/}
+        {currentContents?.length > 2 && <Last />}
       </div>
     </div>
   );
