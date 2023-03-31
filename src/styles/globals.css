@@ -20,6 +20,11 @@
   src: url("../../public/font/SUIT-Bold.ttf");
 }
 
+@font-face {
+  font-family: "Dokdo";
+  src: url("../../public/font/EastSeaDokdo-Regular.ttf");
+}
+
 * {
   font-family: "SUIT-R";
   font-size: 20px;
@@ -38,7 +43,12 @@
 }
 
 :root {
-  --gray: #c8c8c8;
-  --disregard: #f3f3f3;
-  --neon-green: #b8ff65;
+  --main-color: #f6a5c9;
+  --gray-font: #929292;
+  --highlight-color: #ff6666;
+  --border-color: #c7c7c7;
+  --disabled-font: #dbdbdb;
+  --activated-font: #666666;
+  --hot-pink-font: #ed497b;
+  --pale-pink-background: #ffe0ee;
 }

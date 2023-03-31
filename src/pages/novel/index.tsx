@@ -1,8 +1,11 @@
-import Content from "@/component/reading/content";
-import Last from "@/component/reading/last";
-import Title from "@/component/reading/title";
+import Content from "@/component/novel/content";
+import Last from "@/component/novel/last";
+import Title from "@/component/novel/title";
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
+
+const title = "내 최애 찾기 프로젝트";
 
 type Props = {
   NovelId: number;
@@ -28,6 +31,8 @@ export type NovelDetailType = {
 export const dummyContent =
   "누구든지 체포 또는 구속을 당한 때에는 적부의 심사를 법원에 청구할 권리를 가진다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 이 헌법시행 당시의 법령과 조약은 이 헌법에 위배되지 아니하는 한 그 효력을 지속한다. 모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는 처벌·보안처분 또는 강제노역을 받지 아니한다. ";
 export default function Reading({ NovelId }: Props) {
+  const router = useRouter();
+  console.log("router", router.query);
   const lastContentRef = useRef<HTMLDivElement>(null);
   // novel id로 default content, default options 불러오기
 

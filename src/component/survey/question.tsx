@@ -13,10 +13,12 @@ type Props = {
     selectedOptionId?: number;
     enteredContent?: string;
   }) => void;
+  index: number;
 };
-export default function Question({ item, changeItem }: Props) {
-  if (item.type === 1) {
-    return <RadioQuestion changeItem={changeItem} item={item} />;
+
+export default function Question({ item, changeItem, index }: Props) {
+  if (item?.questionType === 1) {
+    return <RadioQuestion changeItem={changeItem} item={item} index={index} />;
   } else {
     return <DescriptiveQuestion changeItem={changeItem} item={item} />;
   }

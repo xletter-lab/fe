@@ -10,7 +10,6 @@ export type SurveyType = {
   options?: OptionType[];
   selected?: number;
   content?: string;
-  type?: number;
   questionType: number;
 };
 
@@ -117,10 +116,16 @@ export default function Survey({}: Props) {
   }, []);
 
   return (
-    <div>
-      <div className="center">
-        <input type={"range"} />
-        <input type={"range"} />
+    <div className={`${styles.container}`}>
+      <div className={`center ${styles.range_container}`}>
+        <div className={styles.gray_range} />
+        <div
+          className={`${styles.current_range} ${
+            contents?.[currentQuestion]?.selected > 0
+              ? ""
+              : `${styles.current_range_before_select}`
+          }`}
+        />
       </div>
 
       <div>
@@ -128,17 +133,18 @@ export default function Survey({}: Props) {
           key={`survey_qustion_${contents[currentQuestion]?.id}`}
           item={contents[currentQuestion]}
           changeItem={changeOption}
+          index={currentQuestion}
         />
       </div>
       <div className="center">
         <Button
           buttonText="Back"
-          className={`button ${styles.back}`}
+          className={` ${styles.button} ${styles.back}`}
           onClick={clickBack}
         />
         <Button
           buttonText="Next"
-          className={`button ${styles.next}`}
+          className={`${styles.button} ${styles.next}`}
           onClick={clickNext}
         />
       </div>

@@ -1,22 +1,40 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import Header from "./layout/header";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import Welcome from "@/component/main/Welcome";
+import Info from "@/component/main/Info";
+import Footer from "@/component/main/Footer";
 
-type HeaderProps = {
-  children?: React.ReactNode;
-};
-export default function Home({ children }: HeaderProps) {
-  const function1 = (varaibale: number) => {};
-  if (children) {
-    return (
-      <>
-        <Header />
-        <Children />
-      </>
+export default function Main() {
+  const router = useRouter();
+  const [email, setEmail] = useState<string>("");
+
+  const changeEmail = (newEmail: string) => {
+    setEmail(newEmail);
+  };
+
+  const clickReading = () => {
+    router.push(
+      {
+        pathname: "/novel",
+        query: { email },
+      },
+      "/novel"
     );
-  } else {
-    return <Main />;
-  }
+  };
+
+  return (
+    <>
+      <Welcome
+        email={email}
+        changeEmail={changeEmail}
+        clickReadig={clickReading}
+      />
+      <Info
+        email={email}
+        changeEmail={changeEmail}
+        clickReadig={clickReading}
+      />
+      <Footer />
+    </>
+  );
 }

@@ -1,4 +1,4 @@
-import { OptionType } from "@/pages/reading";
+import { OptionType } from "@/pages/novel";
 import Image from "next/image";
 import Button from "../common/button/Button";
 import styles from "./options.module.css";

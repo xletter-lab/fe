@@ -1,4 +1,4 @@
-import { NovelDetailType } from "@/pages/reading";
+import { NovelDetailType } from "@/pages/novel";
 import Last from "./last";
 import styles from "./content.module.css";
 import Options from "./options";
