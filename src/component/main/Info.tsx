@@ -34,9 +34,9 @@ export default function Info({ email, changeEmail, clickReadig }: Props) {
         <input
           value={email}
           onChange={onChangeEmail}
-          placeholder={"xletter.lab@gmail.com"}
+          placeholder={"이메일 입력하고 소설 읽기!"}
         />
-        <button onClick={clickReadig}>소설 읽기</button>
+        <button onClick={clickReadig}>&gt;&gt;</button>
       </div>
     </div>
   );

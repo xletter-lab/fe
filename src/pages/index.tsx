@@ -12,13 +12,13 @@ export default function Main() {
     setEmail(newEmail);
   };
 
-  const clickReading = () => {
+  const clickNext = () => {
     router.push(
       {
-        pathname: "/novel",
+        pathname: "/warning",
         query: { email },
       },
-      "/novel"
+      "/warning"
     );
   };
 
@@ -27,13 +27,9 @@ export default function Main() {
       <Welcome
         email={email}
         changeEmail={changeEmail}
-        clickReadig={clickReading}
+        clickReadig={clickNext}
       />
-      <Info
-        email={email}
-        changeEmail={changeEmail}
-        clickReadig={clickReading}
-      />
+      <Info email={email} changeEmail={changeEmail} clickReadig={clickNext} />
       <Footer />
     </>
   );
