@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
 import styles from "./index.module.css";
 type Props = {};
-export default function Button({}: Props) {
+export default function Warning({}: Props) {
   const router = useRouter();
   console.log("router", router.query);
+  const clickButton = () => {
+    router.push("/novel/0");
+  };
   return (
     <div>
       <div>;XLetter</div>
@@ -63,7 +66,7 @@ export default function Button({}: Props) {
         </div>
       </div>
       <div>
-        <button>모두 확인했어요!</button>
+        <button onClick={clickButton}>모두 확인했어요!</button>
       </div>
     </div>
   );

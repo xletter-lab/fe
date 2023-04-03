@@ -1,38 +1,43 @@
-import { NovelDetailType } from "@/pages/novel";
-import Last from "./last";
-import styles from "./content.module.css";
-import Options from "./options";
-import { ForwardedRef } from "react";
+import styles from "./Content.module.css";
+import { ForwardedRef, forwardRef } from "react";
+import { ContentDetailType } from "@/pages/novel/[storyIndex]";
+import Option from "./option";
 type Props = {
-  novelDetail?: NovelDetailType;
-  getNextContent?: (selectedOption?: number) => void;
-  isLast?: boolean;
-  ref?: ForwardedRef<HTMLDivElement>;
+  data: ContentDetailType;
+  clickOption: (targetContentId: number, newData: ContentDetailType) => void;
 };
-
-export default function Content({
-  novelDetail,
-  getNextContent,
-  ref,
-  isLast = false,
-}: Props) {
-  const selectOption = (optionId: number) => {
-    getNextContent?.(optionId);
-  };
-
-  return (
-    <div>
-      <div className={styles.container} ref={ref}>
+const Content = forwardRef(
+  ({ clickOption, data }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+    const selectOption = (selectOptionId: number) => {
+      clickOption(data.contentIndex, {
+        ...data,
+        options: data.options.map((option) => {
+          return {
+            ...option,
+            isSelected: selectOptionId === option.optionId,
+          };
+        }),
+      });
+    };
+    return (
+      <div ref={ref}>
+        <div>{data.text}</div>
         <div>
-          <div className={styles.content}>{novelDetail.contentText}</div>
+          {data.options?.map((option, index) => {
+            return (
+              <Option
+                key={`option_${data.contentIndex}_${option.optionId}`}
+                optionType={option}
+                optionIndex={index}
+                clickOption={selectOption}
+                isFirst={option.isFirst}
+              />
+            );
+          })}
         </div>
       </div>
-
-      <div className={styles.content_option}>
-        {novelDetail.options?.length > 0 && (
-          <Options options={novelDetail.options} selectOption={selectOption} />
-        )}
-      </div>
-    </div>
-  );
-}
+    );
+  }
+);
+Content.displayName = "Content";
+export default Content;
