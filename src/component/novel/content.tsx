@@ -1,7 +1,7 @@
 import styles from "./Content.module.css";
 import { ForwardedRef, forwardRef } from "react";
 import { ContentDetailType } from "@/pages/novel/[storyIndex]";
-import Option from "./option";
+import Option from "./Option";
 type Props = {
   data: ContentDetailType;
   clickOption: (targetContentId: number, newData: ContentDetailType) => void;

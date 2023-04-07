@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 import NovelHeader from "@/component/novel/NovelHeader";
 import NovelFooter from "@/component/novel/NovelFooter";
-import Content from "@/component/novel/content";
+import Content from "@/component/novel/Content";
 
 type Props = {};
 
