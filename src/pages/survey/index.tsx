@@ -1,16 +1,17 @@
-import Button from "@/component/common/button/Button";
-import Question from "@/component/survey/question";
-import { useRouter } from "next/router";
+import Question from "@/component/survey/Question";
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
+import SurveyHeader from "@/component/survey/surveyHeader";
+import SurveyFooter from "@/component/survey/surveyFooter";
+import { useRouter } from "next/router";
+
 type Props = {};
 export type SurveyType = {
   id: number;
   question: string;
   options?: OptionType[];
   selected?: number;
-  content?: string;
-  questionType: number;
+  withRadio?: boolean;
 };
 
 export type OptionType = {
@@ -18,136 +19,69 @@ export type OptionType = {
   text: string;
 };
 export default function Survey({}: Props) {
-  const [contents, setContents] = useState<SurveyType[] | undefined>([]);
-  const isValid = contents.every((item) => {
-    if (item?.selected != undefined) {
-      return item.selected > -1;
-    } else {
-      return item.content?.length > 0;
-    }
-  });
-  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-
   const router = useRouter();
-  const changeOption = ({
-    questionId,
-    selectedOptionId,
-    enteredContent,
-  }: {
-    questionId: number;
-    selectedOptionId?: number;
-    enteredContent?: string;
-  }) => {
-    setContents(
-      contents.map((item) => {
-        if (item.id === questionId) {
-          if (item.options != undefined) {
-            console.log("selected option id", selectedOptionId);
-            return {
-              ...item,
-              selected: selectedOptionId,
-            };
-          } else {
-            return {
-              ...item,
-              content: enteredContent,
-            };
-          }
-        } else {
-          return item;
-        }
-      })
-    );
-  };
-
-  const clickBack = () => {
-    setCurrentQuestion(currentQuestion - 1);
-  };
-  const clickNext = () => {
-    setCurrentQuestion(currentQuestion + 1);
-    contents.forEach((item) => {
-      if (item?.selected != undefined) {
-        console.log(item.selected > -1);
-      } else {
-        console.log(item.content?.length > 0);
-      }
-    });
-
-    if (isValid) {
-      router.push("./survey/done");
-    }
-  };
+  const [progress, setProgress] = useState<number>(0);
+  const [contents, setContents] = useState<SurveyType[]>([]);
 
   console.log("contenst", contents);
 
-  useEffect(() => {
+  const getSurveyQuestion = (currentProgress: number) => {
+    setProgress(progress + 1);
     setContents([
       {
+        id: 0,
+        question: "테스터님의 연령대를 선택해주세요.",
+        options: [
+          { id: 0, text: "20~24세" },
+          { id: 1, text: "25~29세" },
+          { id: 2, text: "30~34세" },
+          { id: 3, text: "35~39세" },
+          { id: 4, text: "40대 이상" },
+        ],
+        withRadio: true,
+      },
+      {
         id: 1,
-        question: "첫 번째 질문 내용",
-        questionType: 1,
+        question: "테스터님의 성별을 선택해주세요.",
         options: [
-          { id: 1, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-          { id: 2, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-          { id: 3, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-          { id: 4, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
+          { id: 0, text: "여성" },
+          { id: 1, text: "남성" },
+          { id: 2, text: "기타" },
         ],
-        selected: -1,
-      },
-      {
-        id: 2,
-        question: "두 번째 질문 내용",
-        questionType: 1,
-        options: [
-          { id: 1, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-          { id: 2, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-          { id: 3, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-          { id: 4, text: "A,B 다 같이 죽는다. C는 다시 살아난다.  " },
-        ],
-        selected: -1,
-      },
-      {
-        id: 3,
-        question: "세 번째 질문 내용",
-        questionType: 2,
-        content: "",
+        withRadio: true,
       },
     ]);
+  };
+
+  const clickBeforeButton = () => {
+    setProgress(progress - 1);
+    // 이전 질문 불러오기
+  };
+  const clickNextButton = () => {
+    if (progress < 3) {
+      setProgress(progress + 1);
+    } else {
+      router.push("/survey/descriptiveQuestion");
+    }
+  };
+
+  useEffect(() => {
+    // get survey question
+    getSurveyQuestion(progress);
   }, []);
 
   return (
-    <div className={`${styles.container}`}>
-      <div className={`center ${styles.range_container}`}>
-        <div className={styles.gray_range} />
-        <div
-          className={`${styles.current_range} ${
-            contents?.[currentQuestion]?.selected > 0
-              ? ""
-              : `${styles.current_range_before_select}`
-          }`}
-        />
-      </div>
-
-      <div>
-        <Question
-          key={`survey_qustion_${contents[currentQuestion]?.id}`}
-          item={contents[currentQuestion]}
-          changeItem={changeOption}
-          index={currentQuestion}
-        />
-      </div>
-      <div className="center">
-        <Button
-          buttonText="Back"
-          className={` ${styles.button} ${styles.back}`}
-          onClick={clickBack}
-        />
-        <Button
-          buttonText="Next"
-          className={`${styles.button} ${styles.next}`}
-          onClick={clickNext}
-        />
-      </div>
+    <div>
+      <SurveyHeader />
+      {contents.map((data) => {
+        return <Question key={`survey_content_${data.id}`} data={data} />;
+      })}
+      <SurveyFooter
+        leftButtonText={"< 이전"}
+        rightButtonText={`${progress > 3 ? "설문 완료하기🎉" : "다음"}`}
+        clickLeftButton={clickBeforeButton}
+        clickRightButton={clickNextButton}
+      />
     </div>
   );
 }

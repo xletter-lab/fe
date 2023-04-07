@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Welcome from "@/component/main/Welcome";
 import Info from "@/component/main/Info";
 import Footer from "@/component/main/Footer";
+import styles from "./index.module.css";
 
 export default function Main() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Main() {
   };
 
   return (
-    <>
+    <div className={styles.page}>
       <Welcome
         email={email}
         changeEmail={changeEmail}
@@ -31,6 +32,6 @@ export default function Main() {
       />
       <Info email={email} changeEmail={changeEmail} clickReadig={clickNext} />
       <Footer />
-    </>
+    </div>
   );
 }
