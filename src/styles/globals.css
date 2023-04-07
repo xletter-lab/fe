@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-R";
+  src: url("../../public/font/Pretendard-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Pretendard-SB";
+  src: url("../../public/font/Pretendard-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-R";
+  src: url("../../public/font/SUIT-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-B";
+  src: url("../../public/font/SUIT-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Dokdo";
+  src: url("../../public/font/EastSeaDokdo-Regular.ttf");
+}
+
+* {
+  font-family: "SUIT-R";
+  font-size: 20px;
+  line-height: 24px;
+  color: black;
+}
+
+.bold {
+  font-family: "SUIT-B";
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:root {
+  --main-color: #f6a5c9;
+  --gray-font: #929292;
+  --highlight-color: #ff6666;
+  --border-color: #c7c7c7;
+  --disabled-font: #dbdbdb;
+  --activated-font: #666666;
+  --hot-pink-font: #ed497b;
+  --pale-pink-background: #ffe0ee;
+  --background-black: #454545;
+}
