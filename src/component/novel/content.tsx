@@ -2,13 +2,14 @@ import styles from "./Content.module.css";
 import { ForwardedRef, forwardRef } from "react";
 import { ContentDetailType } from "@/pages/novel/[storyIndex]";
 import Option from "./Option";
-
 type Props = {
   data: ContentDetailType;
   clickOption: (targetContentId: number, newData: ContentDetailType) => void;
 };
-
-export default function Content({ clickOption, data }: Props) {
+function Content(
+  { clickOption, data }: Props,
+  ref: ForwardedRef<HTMLDivElement>
+) {
   const selectOption = (selectOptionId: number) => {
     clickOption(data.contentIndex, {
       ...data,
@@ -21,7 +22,7 @@ export default function Content({ clickOption, data }: Props) {
     });
   };
   return (
-    <div>
+    <div ref={ref}>
       <div>{data.text}</div>
       <div>
         {data.options?.map((option, index) => {
@@ -39,3 +40,5 @@ export default function Content({ clickOption, data }: Props) {
     </div>
   );
 }
+
+export default forwardRef(Content);
