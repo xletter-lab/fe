@@ -105,12 +105,13 @@ export default function Novel({}: Props) {
         <div>
           {data.map((content) => {
             return (
-              <Content
-                ref={lastContentRef}
-                key={`content_${content.contentIndex}`}
-                data={content}
-                clickOption={clickOption}
-              />
+              // <Content
+              //   ref={lastContentRef}
+              //   key={`content_${content.contentIndex}`}
+              //   data={content}
+              //   clickOption={clickOption}
+              // />
+              <div key={`content_${content.contentIndex}`}>Content</div>
             );
           })}
         </div>
