@@ -8,10 +8,7 @@ type Props = {
   clickOption: (targetContentId: number, newData: ContentDetailType) => void;
 };
 
-function Content(
-  { clickOption, data }: Props,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+export default function Content({ clickOption, data }: Props) {
   const selectOption = (selectOptionId: number) => {
     clickOption(data.contentIndex, {
       ...data,
@@ -24,7 +21,7 @@ function Content(
     });
   };
   return (
-    <div ref={ref}>
+    <div>
       <div>{data.text}</div>
       <div>
         {data.options?.map((option, index) => {
@@ -42,5 +39,3 @@ function Content(
     </div>
   );
 }
-
-export default forwardRef(Content);

@@ -104,7 +104,6 @@ export default function Novel({}) {
           {data.map((content) => {
             return (
               <Content
-                ref={lastContentRef}
                 key={`content_${content.contentIndex}`}
                 data={content}
                 clickOption={clickOption}
