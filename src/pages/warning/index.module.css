@@ -1,0 +1,113 @@
+.container {
+}
+
+.logo {
+  font-family: "Dokdo";
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 80px;
+  text-align: left;
+  margin-left: 40px;
+  margin-top: 10px;
+  color: var(--main-color);
+  margin-bottom: 75px;
+}
+
+.content_container {
+  font-family: "SUIT-R";
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  text-align: center;
+  margin-bottom: 82px;
+}
+.main_text {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.sub_text {
+  font-weight: 600;
+  font-size: 18px;
+}
+.content {
+}
+.item {
+  margin-top: 30px;
+  display: flex;
+}
+.item_text {
+}
+.text {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+}
+.number {
+  margin-right: 18px;
+  width: 28px;
+  height: 28px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 16px;
+  text-align: center;
+  line-height: 28px;
+}
+.text_gray {
+  color: var(--gray-font);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 8px;
+}
+.checkbox_area {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+}
+.checkbox_border {
+  margin-right: 12px;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  height: 32px;
+  display: flex;
+  border: 1px solid var(--gray-font);
+  border-radius: 10px;
+  color: var(--gray-font);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+.checkbox_text {
+  display: flex;
+  align-items: center;
+}
+.transparent {
+  display: flex;
+  opacity: 0.7;
+  color: var(--main-color);
+  font-size: 18px;
+}
+.button_area {
+  width: 100%;
+  margin-top: 85px;
+  margin-bottom: 285px;
+  display: flex;
+  justify-content: center;
+}
+.button {
+  background-color: var(--main-color);
+  border-radius: 10px;
+  width: 180px;
+  height: 48px;
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+}
