@@ -27,19 +27,16 @@
 
 * {
   font-family: "SUIT-R";
-  font-size: 20px;
-  line-height: 24px;
-  color: black;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
 .bold {
   font-family: "SUIT-B";
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 :root {
