@@ -1,0 +1,48 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  min-width: 660px;
+}
+.logo {
+  color: var(--main-color);
+  text-align: left;
+  font-family: "Dokdo";
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 80px;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+.content_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "SUIT-R";
+}
+.title {
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 180%;
+  text-align: center;
+}
+.text {
+  font-weight: 600;
+  size: 16px;
+  color: var(--gray-font);
+  text-align: center;
+}
+.sns {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.discord {
+  margin-right: 20px;
+}
+.twitter {
+  margin-right: 20px;
+}
+.telegram {
+}

@@ -1,0 +1,26 @@
+.container {
+  width: 100vw;
+  min-width: 930px;
+  height: 100vh;
+  font-family: "SUIT-R";
+}
+.novel_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.novel {
+  padding: 0 200px;
+}
+.story_title {
+  font-weight: 700;
+  color: black;
+  font-size: 35px;
+  line-height: 180%;
+  text-align: left;
+  margin-bottom: 50px;
+}
+.novel_content {
+}
