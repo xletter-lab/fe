@@ -53,7 +53,10 @@ export default function Info({ email, changeEmail, clickReadig }: Props) {
           onChange={onChangeEmail}
           placeholder={"이메일 입력하고 소설 읽기!"}
         />
-        <button className={styles.button} onClick={clickReadig}>
+        <button
+          className={styles.button}
+          onClick={clickReadig}
+          disabled={email.length == 0}>
           &gt;&gt;
         </button>
       </div>

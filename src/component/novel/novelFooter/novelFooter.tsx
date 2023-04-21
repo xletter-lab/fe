@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import styles from "./novelFooter.module.css";
 type Props = {
-  isLast?: boolean;
+  isLastStory?: boolean;
   getStoryNext?: () => void;
   goSurvey?: () => void;
 };
 export default function NovelFooter({
   getStoryNext,
   goSurvey,
-  isLast = true,
+  isLastStory = false,
 }: Props) {
   const clickNext = () => {
     getStoryNext?.();
@@ -18,7 +18,7 @@ export default function NovelFooter({
   };
   return (
     <div>
-      {isLast ? (
+      {isLastStory ? (
         <div className={styles.container}>
           <div>
             <div className={styles.text}>

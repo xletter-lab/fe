@@ -30,7 +30,7 @@ export default function NovelHeader({
       <div className={styles.header}>
         <div
           className={`${styles.previous_story} ${
-            storyIndex > 0 ? "" : "disabled"
+            storyIndex == 0 ? styles.disabled : "active"
           }`}
           onClick={onClickBeforeButton}>
           &lt; 이전 화

@@ -22,7 +22,10 @@ export default function Welcome({ email, changeEmail, clickReadig }: Props) {
             value={email}
             onChange={onChangeEmail}
             placeholder={"이메일 입력하고 소설 읽기!"}></input>
-          <button className={styles.email_button} onClick={clickReadig}>
+          <button
+            className={styles.email_button}
+            onClick={clickReadig}
+            disabled={email.length == 0}>
             &gt;&gt;
           </button>
         </div>

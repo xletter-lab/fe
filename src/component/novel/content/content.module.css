@@ -1,0 +1,59 @@
+.container {
+}
+
+.content_none {
+  margin-bottom: 30px;
+}
+
+.with_option_content {
+}
+
+.options_container {
+}
+
+.option_line {
+  align-items: baseline;
+  display: flex;
+}
+
+.option {
+  display: flex;
+  align-items: baseline;
+  min-width: 1045px;
+  border: 1px solid var(--gray-font);
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  color: var(--gray-font);
+}
+.option_id {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border: 1px solid var(--gray-font);
+  border-radius: 50%;
+}
+.option_selected {
+  border: 1px solid var(--hot-pink-font);
+  color: var(--hot-pink-font);
+  background-color: var(--pale-pink-background);
+}
+.option_discared {
+}
+.option_none {
+  display: none;
+}
+
+.question_mark {
+  margin-left: 15px;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--hot-pink-font);
+  color: var(--hot-pink-font);
+  border-radius: 50%;
+}
+.content_after_select {
+}

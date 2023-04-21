@@ -12,7 +12,7 @@ export default function Warning({}: Props) {
     <div className={styles.container}>
       <div className={styles.logo}>;XLetter</div>
       <div className={styles.content_container}>
-        <div>
+        <div className={styles.content_wrapper}>
           <div className={styles.title}>
             <div className={styles.main_text}>
               XLetter의 첫걸음에 관심을 가져 주신 모든 분들 감사합니다!🙇‍♀️
@@ -23,7 +23,7 @@ export default function Warning({}: Props) {
           </div>
           <div className={styles.content}>
             <div className={styles.text}>XLetter의 Closed Beta는, </div>
-            <div className={styles.container}>
+            <div className={styles.warn_container}>
               <div className={styles.item}>
                 <div className={styles.number}>1</div>
                 <div className={styles.item_text}>
@@ -77,9 +77,7 @@ export default function Warning({}: Props) {
                         width={20}
                         height={20}
                       />
-                      <div className={styles.container}>
-                        : 분기점이 존재하는 회차{" "}
-                      </div>
+                      <div className={""}>: 분기점이 존재하는 회차 </div>
                     </div>
                   </div>
                 </div>
@@ -98,11 +96,11 @@ export default function Warning({}: Props) {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.button_area}>
-            <button className={styles.button} onClick={clickButton}>
-              모두 확인했어요!
-            </button>
+            <div className={styles.button_area}>
+              <button className={styles.button} onClick={clickButton}>
+                모두 확인했어요!
+              </button>
+            </div>
           </div>
         </div>
       </div>
