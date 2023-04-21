@@ -57,26 +57,8 @@ export default function Novel({}: Props) {
 
   const clickOption = (targetContentId: number, newData: StoryType) => {
     // 선택지 업데이트하고 결과 전송하고
-    const updatedData = data.map((content) => {
-      if (content.contentIndex === targetContentId) {
-        return newData;
-      } else {
-        return content;
-      }
-    });
     // 다음 내용 불러오기
-    const newContent: ContentDetailType = {
-      text: dummyContent,
-      contentIndex: data.length,
-      options:
-        data.length === 1
-          ? [
-              { optionContent: dummyOptionContent, optionId: 2 },
-              { optionContent: dummyOptionContent, optionId: 3 },
-            ]
-          : undefined,
-    };
-    setData([...updatedData, newContent]);
+    // 데이터세팅
   };
 
   const getStoryBefore = () => {
