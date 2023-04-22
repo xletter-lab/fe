@@ -1,3 +1,4 @@
+import { StoryIndex } from "@/pages/novel";
 import styles from "./novelHeader.module.css";
 type Props = {
   novelTitle?: string;
@@ -41,7 +42,7 @@ export default function NovelHeader({
         </div>
         <div
           className={`${styles.next_story} ${
-            storyIndex > 0 ? "active" : "disabled"
+            storyIndex < StoryIndex.Story5 ? "active" : styles.disabled
           }`}
           onClick={onClickNextButton}>
           다음 화 &gt;

@@ -69,7 +69,7 @@ export default function Survey({}: Props) {
   }, []);
 
   return (
-    <div>
+    <div className={styles.survey_container}>
       <SurveyHeader />
       {contents.map((data) => {
         return <Question key={`survey_content_${data.id}`} data={data} />;

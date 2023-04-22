@@ -3,7 +3,7 @@ import styles from "./tooltipOption.module.css";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { Option } from "@/pages/novel";
+import { Option, StoryIndex } from "@/pages/novel";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 const theme = createTheme({

@@ -1,5 +1,5 @@
 import { Option, StoryType, StoryIndex } from "@/pages/novel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./content.module.css";
 import NoTooltipOption from "../options/noTooptipOption/noTooltipOption";
 import TooltipOption from "../options/tooptipOption/tooltipOption";
@@ -10,12 +10,11 @@ type Props = {
   onSelectOption: (option: Option) => void;
 };
 export default function Content({ storyIndex, data, onSelectOption }: Props) {
+  const { withOption, contents, options, selected, title } = data;
+  const [tooltipOpen, setToolTipOpen] = useState<boolean>(false);
   console.log("data", data);
   console.log("story index", storyIndex);
-  const { withOption, contents, options, selected, title } = data;
-  const [tooltipOpen, setToolTipOpen] = useState<boolean>(
-    storyIndex === StoryIndex.Story2 ? true : false
-  );
+  console.log("tooltip open", tooltipOpen, storyIndex === StoryIndex.Story2);
 
   const handleTooltipClose = () => {
     setToolTipOpen(false);
@@ -24,6 +23,12 @@ export default function Content({ storyIndex, data, onSelectOption }: Props) {
   const handleTooltipOpen = () => {
     setToolTipOpen(true);
   };
+
+  useEffect(() => {
+    if (storyIndex === StoryIndex.Story2) {
+      handleTooltipOpen();
+    }
+  }, [storyIndex]);
   return (
     <div className={`${styles.container}`}>
       <div className={styles.content_none}>{contents[0]}</div>
