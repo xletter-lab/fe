@@ -1,60 +1,62 @@
-import { OptionType, StoryType } from "@/pages/novel/[index]";
+import { Option, StoryType, StoryIndex } from "@/pages/novel";
+import { useState } from "react";
 import styles from "./content.module.css";
+import NoTooltipOption from "../options/noTooptipOption/noTooltipOption";
+import TooltipOption from "../options/tooptipOption/tooltipOption";
+
 type Props = {
+  storyIndex: number;
   data: StoryType;
+  onSelectOption: (option: Option) => void;
 };
-export default function Content({ data }: Props) {
+export default function Content({ storyIndex, data, onSelectOption }: Props) {
+  console.log("data", data);
+  console.log("story index", storyIndex);
   const { withOption, contents, options, selected, title } = data;
-  const getSelectedOptionIndex = (selected) => {
-    if (selected === OptionType.None) {
-      return -1;
-    } else if (selected === OptionType.A) {
-      return 0;
-    } else {
-      return 1;
-    }
+  const [tooltipOpen, setToolTipOpen] = useState<boolean>(
+    storyIndex === StoryIndex.Story2 ? true : false
+  );
+
+  const handleTooltipClose = () => {
+    setToolTipOpen(false);
   };
 
+  const handleTooltipOpen = () => {
+    setToolTipOpen(true);
+  };
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container}`}>
       <div className={styles.content_none}>{contents[0]}</div>
       {withOption && (
         <div className={styles.with_option_content}>
           <div className={styles.options_container}>
             {options.map((option, index) => {
-              return (
-                <div
-                  key={`option_${index}`}
-                  className={`${styles.option_line}  ${
-                    getSelectedOptionIndex(selected) === index
-                      ? ""
-                      : styles.option_none
-                  }`}>
-                  <div
-                    className={`${styles.option} ${
-                      getSelectedOptionIndex(selected) === index
-                        ? styles.option_selected
-                        : styles.option_discared
-                    }`}>
-                    <div
-                      className={`${styles.option_id} ${
-                        getSelectedOptionIndex(selected) === index
-                          ? styles.option_selected
-                          : styles.option_discared
-                      }`}>
-                      {index == 0 ? "A" : "B"}
-                    </div>
-                    {option}
-                  </div>
-                  {index === 0 &&
-                    getSelectedOptionIndex(selected) !== index && (
-                      <div className={styles.question_mark}>?</div>
-                    )}
-                </div>
-              );
+              if (index == 0)
+                return (
+                  <TooltipOption
+                    key={`option_A`}
+                    selected={selected}
+                    handleTooltipClose={handleTooltipClose}
+                    handleTooltipOpen={handleTooltipOpen}
+                    onClickOption={onSelectOption}
+                    optionId={option.optionId}
+                    optionText={option.optionText}
+                    tooltipOpen={tooltipOpen}
+                  />
+                );
+              else
+                return (
+                  <NoTooltipOption
+                    key={`option_B`}
+                    selected={selected}
+                    onClickOption={onSelectOption}
+                    optionId={option.optionId}
+                    optionText={option.optionText}
+                  />
+                );
             })}
           </div>
-          {selected != OptionType.None && (
+          {selected != Option.None && (
             <div className={styles.content_after_select}>{contents[1]}</div>
           )}
         </div>

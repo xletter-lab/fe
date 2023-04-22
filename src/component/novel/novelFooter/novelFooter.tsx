@@ -17,7 +17,7 @@ export default function NovelFooter({
     goSurvey?.();
   };
   return (
-    <div>
+    <div className={styles.novel_footer_container}>
       {isLastStory ? (
         <div className={styles.container}>
           <div>

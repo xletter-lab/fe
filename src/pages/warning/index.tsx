@@ -6,7 +6,7 @@ export default function Warning({}: Props) {
   const router = useRouter();
   console.log("router", router.query);
   const clickButton = () => {
-    router.push("/novel/0");
+    router.push("/novel");
   };
   return (
     <div className={styles.container}>
