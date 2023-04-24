@@ -1,0 +1,20 @@
+.container {
+  width: 800px;
+  height: 25px;
+  border: 1px solid var(--gray-font);
+  border-radius: 10px;
+  padding: 10px 10px;
+  text-align: start;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  color: var(--gray-font);
+}
+
+.input_selected {
+  accent-color: var(--hot-pink-font) !important;
+}
+.container_selected {
+  background-color: var(--tooltip-background);
+  border: 1px solid var(--hot-pink-font);
+}

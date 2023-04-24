@@ -72,7 +72,8 @@ const withOptionStoryIndex = [
 
 export default function Novel({}: Props) {
   const router = useRouter();
-  console.log("router", router.query);
+  const email = router.query.email;
+  console.log("email", email);
   const [data, setData] = useState<StoryType>(noOptionDD);
   const [storyIndex, setStoryIndex] = useState<StoryIndex>(StoryIndex.Story1);
   const withFooter =

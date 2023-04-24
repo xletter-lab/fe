@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
+  const progress = parseInt(router.query.progress.toString());
+  console.log("progress", progress);
   const onClickLeftButton = () => {
     router.push("/survey/");
   };
@@ -41,6 +43,8 @@ export default function ETC({}: Props) {
         </div>
       </div>
       <SurveyFooter
+        isDone={true}
+        progress={progress}
         clickLeftButton={onClickLeftButton}
         clickRightButton={onClickRightButton}
         leftButtonText="< 이전"
