@@ -101,7 +101,7 @@ export default function Novel({}: Props) {
   };
 
   const goSurvey = () => {
-    router.push("/survey");
+    router.push({ pathname: "/survey/", query: { email } }, "/survey");
     window.scrollTo(0, 0);
   };
 

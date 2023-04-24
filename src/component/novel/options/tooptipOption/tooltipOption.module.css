@@ -7,7 +7,7 @@
 .option_container {
   display: flex;
   align-items: baseline;
-  justify-content: start;
+  justify-content: flex-start;
   border: 1px solid var(--gray-font);
   border-radius: 10px;
   min-width: 800px;

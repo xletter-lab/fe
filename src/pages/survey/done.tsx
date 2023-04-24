@@ -1,6 +1,7 @@
 import { SurveyType } from "@/pages/survey";
 import Image from "next/image";
 import styles from "./done.module.css";
+import Link from "next/link";
 type Props = {
   item: SurveyType;
   changeItem: ({
@@ -25,21 +26,30 @@ export default function Done({ item, changeItem }: Props) {
           <div className={styles.text}>
             다양한 SNS 채널에서 XLetter를 응원해 주세요 :{")"}
           </div>
+
           <div className={styles.sns}>
-            <Image
-              className={styles.discord}
-              alt="discord"
-              src={"/png/discord.png"}
-              width={60}
-              height={60}
-            />
-            <Image
-              className={styles.twitter}
-              alt="twitter"
-              src={"/png/twitter.png"}
-              width={60}
-              height={60}
-            />
+            <Link href={"https://discord.gg/jPrQxwVE"}>
+              <Image
+                className={styles.discord}
+                alt="discord"
+                src={"/png/discord.png"}
+                width={60}
+                height={60}
+              />
+            </Link>
+            <Link
+              href={
+                "https://twitter.com/Xletter_Labs?t=YrHSixULDYM2HzXg0wEU3w&s=09"
+              }>
+              <Image
+                className={styles.twitter}
+                alt="twitter"
+                src={"/png/twitter.png"}
+                width={60}
+                height={60}
+              />
+            </Link>
+
             <Image
               className={styles.telegram}
               alt="telegram"

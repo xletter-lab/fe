@@ -20,6 +20,8 @@
 }
 .right_button {
   border: none;
+  background-color: var(--main-color);
+  color: black;
   border-radius: 10px;
   width: 180px;
   height: 48px;
@@ -27,4 +29,8 @@
 .survey_end {
   background-color: black;
   color: white;
+}
+
+.disabled {
+  color: var(--gray-font);
 }

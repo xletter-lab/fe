@@ -1,20 +1,62 @@
 import SurveyFooter from "@/component/survey/surveyFooter/surveyFooter";
 import styles from "./etc.module.css";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
+import { postSurveyResult, surveyResultType } from "@/api/api";
 type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
-  const [content, setContent] = useState<string>("");
+  const email = router.query.email?.toString();
+  const content = JSON.parse(router.query.contents?.toString());
+  console.log(content);
+  const [text, setText] = useState<string>("");
+  const [wallet, setWallet] = useState<string>("");
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+    setText(e.target.value);
   };
-  const progress = parseInt(router.query?.progress?.toString());
 
+  const onChangeWallet = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWallet(e.target.value);
+  };
   const onClickLeftButton = () => {
     router.push("/survey/");
   };
   const onClickRightButton = () => {
+    const temp = {
+      sid: content.surveyId,
+      res: [
+        ...content.totalQuestionGroups
+          ?.map((data) => {
+            return data.questions.map((q) => {
+              if (typeof q.selected === "number") {
+                return {
+                  questionId: q.questionId,
+                  responseChoice: q.selected,
+                };
+              } else {
+                return q.selected
+                  ?.map((answer) => {
+                    return {
+                      questionId: q.questionId,
+                      responseChoice: answer,
+                    };
+                  })
+                  .flat();
+              }
+            });
+          })
+          .flat(),
+        { questionId: 12, resonseText: text },
+        { questionId: 13, resonseText: wallet },
+      ]
+        .flat()
+        .filter((item) => item !== undefined),
+    };
+
+    postSurveyResult(temp.sid, email, temp.res).then((res) => {
+      console.log(res);
+    });
+
     router.push("/survey/done");
   };
   return (
@@ -33,7 +75,7 @@ export default function ETC({}: Props) {
           </div>
           <textarea
             className={styles.textarea}
-            value={content}
+            value={text}
             onChange={onChangeContent}
             placeholder="여기에 입력하세요."></textarea>
           <div>
@@ -43,6 +85,8 @@ export default function ETC({}: Props) {
             </div>
             <div className={styles.input_area}>
               <input
+                value={wallet}
+                onChange={onChangeWallet}
                 className={styles.input}
                 placeholder="지갑 주소를 입력하세요."></input>
             </div>
@@ -51,7 +95,7 @@ export default function ETC({}: Props) {
       </div>
       <SurveyFooter
         isDone={true}
-        progress={progress}
+        progress={4}
         clickLeftButton={onClickLeftButton}
         clickRightButton={onClickRightButton}
         leftButtonText="< 이전"
