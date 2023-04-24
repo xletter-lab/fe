@@ -312,12 +312,12 @@ export const surveyDD: SurveyType = {
           questionDescription: null,
           choices: [
             {
-              choiceId: 44,
-              choiceText: "예",
+              id: 44,
+              text: "예",
             },
             {
-              choiceId: 45,
-              choiceText: "아니오",
+              id: 45,
+              text: "아니오",
             },
           ],
         },
@@ -329,33 +329,32 @@ export const surveyDD: SurveyType = {
           questionDescription: null,
           choices: [
             {
-              choiceId: 46,
-              choiceText: "거의 매일",
+              id: 46,
+              text: "거의 매일",
             },
             {
-              choiceId: 47,
-              choiceText: "일주일에 3~4번",
+              id: 47,
+              text: "일주일에 3~4번",
             },
             {
-              choiceId: 48,
-              choiceText: "일주일에 1~2번",
+              id: 48,
+              text: "일주일에 1~2번",
             },
             {
-              choiceId: 49,
-              choiceText: "1개월에 2~3번",
+              id: 49,
+              text: "1개월에 2~3번",
             },
             {
-              choiceId: 50,
-              choiceText: "1개월에 1번 이하",
+              id: 50,
+              text: "1개월에 1번 이하",
             },
             {
-              choiceId: 51,
-              choiceText:
-                "기다무(기다리면 무료), 출석 이벤트, 광고 등을 이용한다.",
+              id: 51,
+              text: "기다무(기다리면 무료), 출석 이벤트, 광고 등을 이용한다.",
             },
             {
-              choiceId: 52,
-              choiceText: "유료 결제 경험이 없다.",
+              id: 52,
+              text: "유료 결제 경험이 없다.",
             },
           ],
         },
@@ -367,28 +366,28 @@ export const surveyDD: SurveyType = {
           questionDescription: null,
           choices: [
             {
-              choiceId: 53,
-              choiceText: "5천원~1만원 미만",
+              id: 53,
+              text: "5천원~1만원 미만",
             },
             {
-              choiceId: 54,
-              choiceText: "1~3만원 미만",
+              id: 54,
+              text: "1~3만원 미만",
             },
             {
-              choiceId: 55,
-              choiceText: "3~5만원 미만",
+              id: 55,
+              text: "3~5만원 미만",
             },
             {
-              choiceId: 56,
-              choiceText: "5~10만원 미만",
+              id: 56,
+              text: "5~10만원 미만",
             },
             {
-              choiceId: 57,
-              choiceText: "10만원 이상",
+              id: 57,
+              text: "10만원 이상",
             },
             {
-              choiceId: 58,
-              choiceText: "유료 결제를 하지 않는다.",
+              id: 58,
+              text: "유료 결제를 하지 않는다.",
             },
           ],
         },
