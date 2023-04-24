@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
-  const progress = parseInt(router.query.progress.toString());
+  const progress = parseInt(router.query?.progress?.toString());
   console.log("progress", progress);
   const onClickLeftButton = () => {
     router.push("/survey/");
