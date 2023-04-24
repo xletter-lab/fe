@@ -1,27 +1,37 @@
-import { SurveyType } from "@/pages/survey";
+import { SurveyQuestionGroupType, SurveyType } from "@/pages/survey";
 import styles from "./Question.module.css";
 import Button from "../button/button";
 
 type Props = {
-  data?: SurveyType;
+  progress: number;
+  data?: SurveyQuestionGroupType;
+  answerQuestion: (anwser: string | number) => void;
 };
-export default function Question({ data }: Props) {
+export default function Question({ progress, data, answerQuestion }: Props) {
   return (
-    <div>
-      <div>Q1-1</div>
-      <div>{data.question}</div>
-      <div>
-        {data.options.map((option) => {
-          return (
-            <Button
-              key={`qeustion_${data.id}_option_${option.id}`}
-              text={option.text}
-              withRadio={data.withRadio}
-              quetionId={`${data.id}`}
-            />
-          );
-        })}
-      </div>
+    <div className={styles.container}>
+      {data?.questions?.map((question, index) => {
+        return (
+          <div
+            key={`question_${question.questionId}`}
+            className={styles.question_group}>
+            <div>{`Q${progress + 1}-${index + 1}`}</div>
+            <div>{question.questionText}</div>
+            <div>
+              {question.choices.map((option) => {
+                return (
+                  <Button
+                    key={`qeustion_${question.questionId}_option_${option.id}`}
+                    text={option.text}
+                    withRadio
+                    quetionId={`${option.id}`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -1,0 +1,40 @@
+.container {
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+}
+
+.logo {
+  font-family: "Dokdo";
+  font-weight: 400;
+  font-size: 50px;
+  color: var(--main-color);
+}
+
+.progress_bar {
+  display: flex;
+  height: 0px;
+  position: relative;
+  width: 80%;
+}
+
+.active_bar {
+  height: 5px;
+  background-color: var(--main-color);
+  border-radius: 8px;
+  position: absolute;
+  left: 0px;
+  z-index: 2;
+}
+
+.total_bar {
+  width: 800px;
+  height: 5px;
+  background-color: black;
+  border-radius: 8px;
+  position: absolute;
+  left: 0px;
+}
