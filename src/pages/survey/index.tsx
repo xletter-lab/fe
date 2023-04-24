@@ -447,7 +447,6 @@ export default function Survey({}: Props) {
     optionId: number,
     answer?: string
   ) => {
-    // 주관식
     if (answer !== undefined) {
     } else {
       // 객관식
