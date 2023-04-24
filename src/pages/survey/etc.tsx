@@ -7,7 +7,7 @@ type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
   const email = router.query.email?.toString();
-  const content = JSON.parse(router.query.contents?.toString());
+  const content = JSON.parse(router?.query?.contents?.toString() ?? "{}");
   console.log(content);
   const [text, setText] = useState<string>("");
   const [wallet, setWallet] = useState<string>("");
