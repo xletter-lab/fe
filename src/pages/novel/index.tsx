@@ -4,19 +4,22 @@ import styles from "./index.module.css";
 import NovelHeader from "@/component/novel/novelHeader/novelHeader";
 import NovelFooter from "@/component/novel/novelFooter/novelFooter";
 import Content from "@/component/novel/content/content";
+import { getNovelStory } from "@/api/api";
+import { OperationCanceledException } from "typescript";
 
 type Props = {};
 
 export type StoryType = {
   contents: string[];
-  selected: Option;
+  selected?: Option;
   withOption: boolean;
   title: string;
   options?: OptionType[];
 };
 
 export type OptionType = {
-  optionId: Option;
+  optionId: string;
+  optionValue: Option;
   optionText: string;
 };
 
@@ -72,21 +75,45 @@ const withOptionStoryIndex = [
 
 export default function Novel({}: Props) {
   const router = useRouter();
-  const email = router.query.email;
-  console.log("email", email);
-  const [data, setData] = useState<StoryType>(noOptionDD);
+  const email = router?.query?.email?.toString() ?? "aaa@user.com";
+  const [myOption, setMyOption] = useState<Option[]>([
+    Option.None,
+    Option.None,
+    Option.None,
+  ]);
+
+  const [data, setData] = useState<StoryType>({
+    contents: [""],
+    title: "",
+    withOption: false,
+  });
   const [storyIndex, setStoryIndex] = useState<StoryIndex>(StoryIndex.Story1);
   const withFooter =
-    !data.withOption || (data.withOption && data.selected != Option.None);
+    !data?.withOption || (data?.withOption && data?.selected != Option.None);
 
   const onClickOption = (option: Option) => {
     // 선택지 업데이트하고 결과 전송하고
-    // 다음 내용 불러오기
-    // 데이터세팅
-    setData({
-      ...data,
-      selected: option,
-      contents: [...data.contents, dummyContent],
+    const beforeOptions = JSON.parse(
+      window.localStorage.getItem("xletter_option")
+    );
+    if (storyIndex === StoryIndex.Story2) {
+      beforeOptions[0] = option;
+    } else if (storyIndex === StoryIndex.Story3) {
+      beforeOptions[1] = option;
+    } else {
+      beforeOptions[2] = option;
+    }
+    console.log("after", beforeOptions);
+    window.localStorage.setItem(
+      "xletter_option",
+      JSON.stringify(beforeOptions)
+    );
+    getNovelStory(email, storyIndex + 1, option).then((res) => {
+      setData({
+        ...data,
+        contents: [...data.contents, res.content],
+        selected: option,
+      });
     });
   };
 
@@ -106,35 +133,69 @@ export default function Novel({}: Props) {
   };
 
   useEffect(() => {
-    // 첫 번째 내용 불러오기
     if (withOptionStoryIndex.includes(storyIndex)) {
-      setData({
-        ...unselectedOptionDD,
-        withOption: true,
-        selected: Option.None,
+      getNovelStory(email, storyIndex + 1, Option.None).then((res) => {
+        setData({
+          contents: [res.content],
+          title: res.title,
+          withOption: true,
+          options: [
+            {
+              optionId: "A",
+              optionValue: Option.A,
+              optionText: res.optionAText,
+            },
+            {
+              optionId: "B",
+              optionValue: Option.B,
+              optionText: res.optionBText,
+            },
+          ],
+        });
       });
     } else {
-      setData({
-        ...noOptionDD,
-        withOption: false,
-        selected: Option.None,
+      getNovelStory(email, storyIndex + 1, Option.None).then((res) => {
+        setData({
+          contents: [res.content],
+          title: res.title,
+          withOption: false,
+        });
       });
     }
     window.scrollTo(0, 0);
   }, [storyIndex]);
 
+  useEffect(() => {
+    // 선택했던 옵션 불러오기
+    const tempOption = window.localStorage.getItem("xletter_option");
+    if (tempOption) {
+      setMyOption(JSON.parse(tempOption));
+    } else {
+      window.localStorage.setItem("xletter_option", JSON.stringify(myOption));
+    }
+    // 첫 번째 내용 불러오기
+    getNovelStory(email, storyIndex + 1, myOption[storyIndex]).then((res) => {
+      console.log("res", typeof res.content);
+      setData({
+        contents: [res.content],
+        title: res.title,
+        withOption: false,
+      });
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <NovelHeader
-        novelTitle="내 최애 찾기 프로젝트 by 청몽채화"
-        storyTitle="1. 국무총리를 국무위원의 해임을"
+        novelTitle="위험한 인터뷰 by 청몽채화"
+        storyTitle={data?.title}
         storyIndex={storyIndex}
         getStoryBefore={getStoryBefore}
         getStoryNext={getStoryNext}
       />
       <div className={styles.novel_container}>
         <div className={styles.novel}>
-          <div className={styles.story_title}>{data.title}</div>
+          <div className={styles.story_title}>{data?.title}</div>
           <div className={styles.novel_content_container}>
             <Content
               storyIndex={storyIndex}

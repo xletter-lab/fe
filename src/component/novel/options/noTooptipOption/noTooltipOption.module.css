@@ -30,7 +30,13 @@
   height: 20px;
   text-align: center;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .selected_option_id {
   border: 1px solid var(--hot-pink-font);
+}
+.option_text {
+  height: 21px;
 }

@@ -1,4 +1,4 @@
-import { OptionType } from "@/pages/novel";
+import { Option } from "@/pages/novel";
 import axios from "axios";
 
 export const getAllSurvey = async () => {
@@ -56,11 +56,12 @@ export const postSurveyResult = async (
 export const getNovelStory = async (
   email: string,
   story: number,
-  option?: OptionType
+  option?: Option
 ) => {
-  await axios
+  return await axios
     .get(`http://43.201.113.249:3000/novel/${email}/${story}/${option}`)
     .then((res) => {
-      console.log(res);
+      console.log(res.data.result);
+      return res.data.result;
     });
 };

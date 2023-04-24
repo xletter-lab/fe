@@ -6,15 +6,12 @@ import TooltipOption from "../options/tooptipOption/tooltipOption";
 
 type Props = {
   storyIndex: number;
-  data: StoryType;
+  data?: StoryType;
   onSelectOption: (option: Option) => void;
 };
 export default function Content({ storyIndex, data, onSelectOption }: Props) {
   const { withOption, contents, options, selected, title } = data;
   const [tooltipOpen, setToolTipOpen] = useState<boolean>(false);
-  console.log("data", data);
-  console.log("story index", storyIndex);
-  console.log("tooltip open", tooltipOpen, storyIndex === StoryIndex.Story2);
 
   const handleTooltipClose = () => {
     setToolTipOpen(false);
@@ -29,18 +26,20 @@ export default function Content({ storyIndex, data, onSelectOption }: Props) {
       handleTooltipOpen();
     }
   }, [storyIndex]);
+
   return (
     <div className={`${styles.container}`}>
       <div className={styles.content_none}>{contents[0]}</div>
       {withOption && (
         <div className={styles.with_option_content}>
           <div className={styles.options_container}>
-            {options.map((option, index) => {
+            {options?.map((option, index) => {
               if (index == 0)
                 return (
                   <TooltipOption
-                    key={`option_A`}
+                    key={option.optionId}
                     selected={selected}
+                    optionValue={option.optionValue}
                     handleTooltipClose={handleTooltipClose}
                     handleTooltipOpen={handleTooltipOpen}
                     onClickOption={onSelectOption}
@@ -54,8 +53,9 @@ export default function Content({ storyIndex, data, onSelectOption }: Props) {
                   <NoTooltipOption
                     key={`option_B`}
                     selected={selected}
+                    optionValue={option.optionValue}
                     onClickOption={onSelectOption}
-                    optionId={option.optionId}
+                    optionId={option.optionValue}
                     optionText={option.optionText}
                   />
                 );

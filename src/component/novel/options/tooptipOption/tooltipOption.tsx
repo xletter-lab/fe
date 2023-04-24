@@ -14,9 +14,10 @@ const theme = createTheme({
 type Props = {
   selected: Option;
   tooltipOpen: boolean;
-  optionId: Option;
+  optionId: string;
+  optionValue: Option;
   optionText: string;
-  onClickOption: (optionId: Option) => void;
+  onClickOption: (optionId: string) => void;
   handleTooltipClose: () => void;
   handleTooltipOpen: () => void;
 };
@@ -26,6 +27,7 @@ export default function TooltipOption({
   tooltipOpen,
   onClickOption,
   optionId,
+  optionValue,
   optionText,
   handleTooltipClose,
   handleTooltipOpen,
@@ -39,6 +41,7 @@ export default function TooltipOption({
       padding: "9px 27px",
       lineHeight: "150%",
       height: "30px",
+      width: "280px",
     },
     [`& .${tooltipClasses.arrow}`]: {
       "&:before": {
@@ -55,32 +58,33 @@ export default function TooltipOption({
     },
   }));
 
+  console.log("tooltipOption", selected, optionValue);
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.container}>
         <div
           className={`${styles.option_container} ${
-            selected !== Option.None
-              ? selected === optionId
-                ? styles.selected_option
-                : styles.unselected_option
-              : ""
+            selected === Option.None || selected === undefined
+              ? ""
+              : selected === optionValue
+              ? styles.selected_option
+              : styles.unselected_option
           }`}
           onClick={() => onClickOption(optionId)}>
           <div
             className={`${styles.option_id}  ${
-              selected !== Option.None
-                ? selected === optionId
-                  ? styles.selected_option_id
-                  : styles.unselected_option
-                : ""
+              selected === Option.None || selected === undefined
+                ? ""
+                : selected === optionValue
+                ? styles.selected_option_id
+                : styles.unselected_option
             }`}>
             {optionId}
           </div>
           <div className={styles.option_text}>{optionText}</div>
         </div>
         <ClickAwayListener onClickAway={handleTooltipClose}>
-          <div>
+          <div className={styles.tooltip_wrappper}>
             <MyTooltip
               PopperProps={{
                 disablePortal: true,
@@ -97,7 +101,9 @@ export default function TooltipOption({
               disableTouchListener>
               <div
                 className={`${styles.question_mark} ${
-                  selected !== Option.None && styles.no_tooltip
+                  selected !== Option.None &&
+                  selected !== undefined &&
+                  styles.no_tooltip
                 }`}
                 onClick={handleTooltipOpen}>
                 ?

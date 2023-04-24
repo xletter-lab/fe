@@ -5,16 +5,21 @@
 }
 
 .content_none {
-  margin-bottom: 80px;
+  margin-bottom: 100px;
+  width: 100%;
+  white-space: pre-line;
+  line-height: 180%;
 }
 
 .with_option_content {
   width: 100%;
   height: 100%;
+  white-space: pre-line;
+  line-height: 180%;
 }
 
 .options_container {
-  margin-bottom: 80px;
+  margin-bottom: 200px;
 }
 
 .option_line {
@@ -62,7 +67,7 @@
   border-radius: 50%;
 }
 .content_after_select {
-  margin-bottom: 80px;
+  margin-bottom: 200px;
 }
 .tooltip {
   background-color: var(--tooltip-backgorund);
