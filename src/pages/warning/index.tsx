@@ -4,9 +4,15 @@ import Image from "next/image";
 type Props = {};
 export default function Warning({}: Props) {
   const router = useRouter();
-  console.log("router", router.query);
+  console.log("router", router.query.email);
   const clickButton = () => {
-    router.push("/novel");
+    router.push(
+      {
+        pathname: "/novel",
+        query: { email: router.query.email },
+      },
+      "/novel"
+    );
   };
   return (
     <div className={styles.container}>

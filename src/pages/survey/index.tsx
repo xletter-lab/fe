@@ -431,6 +431,7 @@ export default function Survey({}: Props) {
   const clickNextButton = () => {
     if (progress < 3) {
       setProgress(progress + 1);
+      window.scrollTo(0, 0);
     } else {
       router.push(
         {
@@ -441,6 +442,8 @@ export default function Survey({}: Props) {
       );
     }
   };
+
+  console.log(contents);
 
   const answerQuestion = (
     questionId: number,
@@ -462,12 +465,23 @@ export default function Survey({}: Props) {
                     ...q,
                     selected:
                       q.selected !== undefined
-                        ? typeof q.selected === "number"
-                          ? [
-                              q.selected,
-                              q.choices.find((choice) => choice.id === optionId)
-                                ?.id,
-                            ]
+                        ? optionId == 28
+                          ? 28
+                          : typeof q.selected === "number"
+                          ? q.selected == 28
+                            ? [
+                                q.choices.find(
+                                  (choice) => choice.id === optionId
+                                )?.id,
+                              ]
+                            : [
+                                q.selected,
+                                q.choices.find(
+                                  (choice) => choice.id === optionId
+                                )?.id,
+                              ]
+                          : q.selected.includes(optionId)
+                          ? q.selected.filter((item) => item !== optionId)
                           : [
                               ...q.selected,
                               q.choices.find((choice) => choice.id === optionId)
@@ -495,7 +509,9 @@ export default function Survey({}: Props) {
       setContents(newContent);
       const checkDone = newContent.totalQuestionGroups[progress].questions.map(
         (question) => {
-          return question.selected !== undefined;
+          return typeof question.selected === "number"
+            ? question.selected !== undefined
+            : question.selected?.length > 0;
         }
       );
       console.log("check", checkDone);

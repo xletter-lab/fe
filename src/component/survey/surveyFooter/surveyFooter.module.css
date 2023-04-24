@@ -19,10 +19,12 @@
   height: 48px;
 }
 .right_button {
-  background-color: var(--main-color);
-  color: color;
   border: none;
   border-radius: 10px;
   width: 180px;
   height: 48px;
+}
+.survey_end {
+  background-color: black;
+  color: white;
 }

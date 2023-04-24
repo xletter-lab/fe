@@ -21,13 +21,14 @@ export default function Button({
   return (
     <div
       onClick={clickButton}
-      className={`${styles.container} ${className} ${
-        selected && styles.container_selected
-      }`}>
+      className={`${styles.container} ${
+        !withRadio && styles.no_radio
+      } ${className} ${selected ? styles.container_selected : ""}`}>
       {withRadio && (
         <input
-          className={`${styles.input} ${selected && styles.input_selected}`}
+          className={`${styles.input} ${selected ? styles.input_selected : ""}`}
           type="radio"
+          readOnly
           name={quetionId.toString()}
           style={{ accentColor: "#5729e9" }}
           checked={selected}

@@ -102,6 +102,7 @@ export default function Novel({}: Props) {
 
   const goSurvey = () => {
     router.push("/survey");
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {

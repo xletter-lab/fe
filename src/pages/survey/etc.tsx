@@ -1,11 +1,16 @@
 import SurveyFooter from "@/component/survey/surveyFooter/surveyFooter";
 import styles from "./etc.module.css";
 import { useRouter } from "next/router";
+import React, { useState } from "react";
 type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
+  const [content, setContent] = useState<string>("");
+  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
   const progress = parseInt(router.query?.progress?.toString());
-  console.log("progress", progress);
+
   const onClickLeftButton = () => {
     router.push("/survey/");
   };
@@ -28,6 +33,8 @@ export default function ETC({}: Props) {
           </div>
           <textarea
             className={styles.textarea}
+            value={content}
+            onChange={onChangeContent}
             placeholder="여기에 입력하세요."></textarea>
           <div>
             <div className={styles.title}>지갑주소를 남겨주세요.</div>

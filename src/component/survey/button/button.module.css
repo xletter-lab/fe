@@ -17,4 +17,8 @@
 .container_selected {
   background-color: var(--tooltip-background);
   border: 1px solid var(--hot-pink-font);
+  color: var(--hot-pink-font);
+}
+.no_radio {
+  padding-left: 13px;
 }

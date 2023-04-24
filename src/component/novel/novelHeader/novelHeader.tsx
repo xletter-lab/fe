@@ -21,7 +21,7 @@ export default function NovelHeader({
   };
 
   const onClickNextButton = () => {
-    if (storyIndex < 3) {
+    if (storyIndex < 4) {
       getStoryNext();
     }
   };

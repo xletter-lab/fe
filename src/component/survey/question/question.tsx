@@ -13,8 +13,6 @@ type Props = {
   ) => void;
 };
 export default function Question({ progress, data, answerQuestion }: Props) {
-  console.log(data);
-
   const clickButton = (questionId: number, optionId: number) => {
     answerQuestion(questionId, optionId);
   };
@@ -33,24 +31,29 @@ export default function Question({ progress, data, answerQuestion }: Props) {
             <div className={styles.question_options}>
               <div
                 className={`${styles.question_options_wrapper} ${
-                  question.choices.length > 5 &&
-                  styles.question_options_wrapper_long
+                  question.choices.length > 7
+                    ? styles.question_options_wrapper_long
+                    : ""
                 }`}>
                 {question.choices.map((option, index) => {
                   return (
                     <Button
                       key={`qeustion_${question.questionId}_option_${option.id}`}
                       text={option.text}
-                      withRadio
+                      withRadio={question.questionType == "single"}
                       className={
-                        question.choices.length > 5 && styles.half_button
+                        question.choices.length > 7 ? styles.half_button : ""
                       }
                       quetionId={
                         question.questionType === "multiple"
                           ? option.id
                           : question.questionId
                       }
-                      selected={question.selected === option.id}
+                      selected={
+                        typeof question.selected === "number"
+                          ? question.selected === option.id
+                          : question.selected?.includes(option.id)
+                      }
                       onClickButton={() =>
                         clickButton(question.questionId, option.id)
                       }

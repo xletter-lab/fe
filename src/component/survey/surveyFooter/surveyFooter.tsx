@@ -30,7 +30,7 @@ export default function SurveyFooter({
         {leftButtonText}
       </button>
       <button
-        className={styles.right_button}
+        className={`${styles.right_button} ${styles.survey_end}`}
         onClick={onClickRightButton}
         disabled={!isDone}>
         {rightButtonText}
