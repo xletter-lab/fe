@@ -7,7 +7,7 @@ import Footer from '@/component/main/footer/footer';
 
 export default function Main() {
   const router = useRouter();
-  const [email, setEmail] = useState<string>('aaa@user.com');
+  const [email, setEmail] = useState<string>('');
 
   const changeEmail = (newEmail: string) => {
     setEmail(newEmail);

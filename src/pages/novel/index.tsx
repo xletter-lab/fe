@@ -71,7 +71,7 @@ const withOptionStoryIndex = [StoryIndex.Story2, StoryIndex.Story3, StoryIndex.S
 
 export default function Novel({}: Props) {
   const router = useRouter();
-  const email = router?.query?.email?.toString() ?? 'aaa@user.com';
+  const email = router?.query?.email?.toString() ?? '';
   const [myOption, setMyOption] = useState<Option[]>([Option.None, Option.None, Option.None]);
 
   const [data, setData] = useState<StoryType>({
@@ -148,7 +148,9 @@ export default function Novel({}: Props) {
         });
       });
     }
-    window.scrollTo(0, 0);
+    if (storyIndex < StoryIndex.Story5) {
+      window.scrollTo(0, 0);
+    }
   }, [storyIndex]);
 
   useEffect(() => {
