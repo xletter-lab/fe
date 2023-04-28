@@ -1,8 +1,8 @@
 import SurveyFooter from "@/component/survey/surveyFooter/surveyFooter";
 import styles from "./etc.module.css";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { postSurveyResult, surveyResultType } from "@/api/api";
+import { postSurveyResult } from "@/api/api";
 import Image from "next/image";
 type Props = {};
 export default function ETC({}: Props) {
