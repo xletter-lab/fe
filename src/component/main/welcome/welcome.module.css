@@ -5,8 +5,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 272px;
 }
-
+.logo_image {
+  height: 100%;
+}
 .logo {
   font-family: "Dokdo";
   font-weight: 400;
@@ -14,6 +17,10 @@
   line-height: 100%;
   text-align: center;
   color: var(--main-color);
+  width: 496px;
+  height: 272px;
+  position: relative;
+  top: 71px;
 }
 
 .text_bold {
@@ -23,6 +30,7 @@
   line-height: 160%;
   text-align: center;
   color: white;
+  z-index: 1;
 }
 
 .text_thin {
@@ -61,4 +69,5 @@
   border-radius: 10px;
   border: none;
   position: relative;
+  color: black;
 }

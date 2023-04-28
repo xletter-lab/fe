@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./index.module.css";
 import Welcome from "@/component/main/welcome/welcome";
-import Info from "@/component/main/info/info";
+import landingImage from "../../public/png/landing_page.png";
 import Footer from "@/component/main/footer/footer";
+import Image from "next/image";
+import { defaultOptions } from "@/types";
 
 export default function Main() {
   const router = useRouter();
@@ -14,14 +16,11 @@ export default function Main() {
   };
 
   const clickNext = () => {
-    router.push(
-      {
-        pathname: "/warning",
-        query: { email },
-      },
-      "/warning"
-    );
+    window.localStorage.setItem("xletter_email", email);
+    router.push("/warning");
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.page}>
@@ -30,8 +29,16 @@ export default function Main() {
         changeEmail={changeEmail}
         clickReadig={clickNext}
       />
-      <Info email={email} changeEmail={changeEmail} clickReadig={clickNext} />
-      <Footer />
+      <div className={styles.landing_image}></div>
+      <Image
+        alt="landing"
+        src={landingImage}
+        width="1440"
+        height={"1384"}
+        className={styles.landing_image}
+      />
+
+      <Footer email={email} changeEmail={changeEmail} clickReadig={clickNext} />
     </div>
   );
 }

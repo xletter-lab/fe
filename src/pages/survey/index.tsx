@@ -5,6 +5,7 @@ import SurveyHeader from "@/component/survey/surveyHeader/surveyHeader";
 import SurveyFooter from "@/component/survey/surveyFooter/surveyFooter";
 import Question from "@/component/survey/question/question";
 import { getAllSurvey } from "@/api/api";
+import { StoryIndex } from "@/types";
 
 type Props = {};
 
@@ -42,7 +43,15 @@ export default function Survey({}: Props) {
   console.log("progress", progress);
 
   const clickBeforeButton = () => {
-    setProgress(progress - 1);
+    if (progress == 0) {
+      // 이전에 읽던 소설 화면으로 넘어간다는 툴팁
+      router.push({
+        pathname: "/novel",
+        query: { storyIndex: StoryIndex.Story5 },
+      });
+    } else {
+      setProgress(progress - 1);
+    }
   };
 
   const clickNextButton = () => {
@@ -129,7 +138,7 @@ export default function Survey({}: Props) {
             : question.selected?.length > 0;
         }
       );
-      console.log("check", checkDone);
+
       setIsDone(checkDone.every((data) => data === true));
     }
   };

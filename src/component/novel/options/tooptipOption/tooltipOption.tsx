@@ -3,8 +3,8 @@ import styles from "./tooltipOption.module.css";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { Option, StoryIndex } from "@/pages/novel";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { Option } from "@/types";
 
 const theme = createTheme({
   typography: {
@@ -58,13 +58,14 @@ export default function TooltipOption({
     },
   }));
 
-  console.log("tooltipOption", selected, optionValue);
+  console.log("tooltipOption", tooltipOpen, selected, Option.None);
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.container}>
         <div
           className={`${styles.option_container} ${
-            selected === Option.None || selected === undefined
+            selected === undefined ||
+            (selected !== undefined && selected === Option.None)
               ? ""
               : selected === optionValue
               ? styles.selected_option
@@ -73,7 +74,8 @@ export default function TooltipOption({
           onClick={() => onClickOption(optionId)}>
           <div
             className={`${styles.option_id}  ${
-              selected === Option.None || selected === undefined
+              selected === undefined ||
+              (selected !== undefined && selected === Option.None)
                 ? ""
                 : selected === optionValue
                 ? styles.selected_option_id
@@ -101,8 +103,8 @@ export default function TooltipOption({
               disableTouchListener>
               <div
                 className={`${styles.question_mark} ${
-                  selected !== Option.None &&
                   selected !== undefined &&
+                  selected !== Option.None &&
                   styles.no_tooltip
                 }`}
                 onClick={handleTooltipOpen}>

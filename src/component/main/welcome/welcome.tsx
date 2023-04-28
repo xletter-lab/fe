@@ -1,3 +1,5 @@
+import Image from "next/image";
+import logo from "../../../../public/png/logo.png";
 import styles from "./welcome.module.css";
 type Props = {
   email: string;
@@ -10,8 +12,14 @@ export default function Welcome({ email, changeEmail, clickReadig }: Props) {
   };
   return (
     <div className={styles.container}>
-      <div>
-        <div className={styles.logo}>;XLetter</div>
+      <div className={styles.logo_image}>
+        <Image
+          alt="logo"
+          src={logo}
+          width={496}
+          height={272}
+          className={styles.logo}
+        />
         <div className={styles.text_bold}>Vote & Read</div>
         <div className={styles.text_thin}>
           인터랙티브 웹소설 XLetter의 클로즈드 베타에 오신 것을 환영합니다!

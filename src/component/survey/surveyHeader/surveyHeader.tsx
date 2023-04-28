@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./surveyHeader.module.css";
 type Props = {
   progress: number;
@@ -5,7 +6,13 @@ type Props = {
 export default function SurveyHeader({ progress }: Props) {
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>;XLetter</div>
+      <Image
+        alt="logo"
+        src={"/png/logo.png"}
+        width={125}
+        height={80}
+        className={styles.logo}
+      />
       <div className={styles.progress_bar}>
         <div
           className={styles.active_bar}

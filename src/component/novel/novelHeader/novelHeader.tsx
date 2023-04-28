@@ -1,5 +1,6 @@
-import { StoryIndex } from "@/pages/novel";
+import { StoryIndex } from "@/types";
 import styles from "./novelHeader.module.css";
+import Image from "next/image";
 type Props = {
   novelTitle?: string;
   storyTitle?: string;
@@ -27,7 +28,13 @@ export default function NovelHeader({
   };
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>;XLetter</div>
+      <Image
+        alt="logo"
+        src={"/png/logo.png"}
+        width={125}
+        height={80}
+        className={styles.logo}
+      />
       <div className={styles.header}>
         <div
           className={`${styles.previous_story} ${

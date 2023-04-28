@@ -4,11 +4,15 @@ type Props = {
   isLastStory?: boolean;
   getStoryNext?: () => void;
   goSurvey?: () => void;
+  nextStoryIndex?: number;
+  nextStoryTitle?: string;
 };
 export default function NovelFooter({
   getStoryNext,
   goSurvey,
   isLastStory = false,
+  nextStoryIndex = 1,
+  nextStoryTitle = "",
 }: Props) {
   const clickNext = () => {
     getStoryNext?.();
@@ -38,7 +42,7 @@ export default function NovelFooter({
             <div className={styles.content}>
               <div className={styles.text}>다음 내용이 궁금하다면!</div>
               <button className={styles.button_next} onClick={clickNext}>
-                다음 화 : N화 - 회차 제목{" "}
+                {`다음 화 : ${nextStoryIndex}화 - ${nextStoryTitle}`}
               </button>
             </div>
             <div className={styles.content}>

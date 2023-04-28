@@ -1,5 +1,5 @@
+import { Option } from "@/types";
 import styles from "./noTooltipOption.module.css";
-import { Option } from "@/pages/novel";
 
 type Props = {
   selected: Option;
@@ -19,7 +19,7 @@ export default function NoTooltipOption({
   return (
     <div
       className={`${styles.container} ${
-        selected === Option.None || selected === undefined
+        selected === undefined || selected === Option.None
           ? ""
           : selected === optionValue
           ? styles.selected_option
@@ -28,7 +28,7 @@ export default function NoTooltipOption({
       onClick={() => onClickOption(optionValue)}>
       <div
         className={`${styles.option_id} ${
-          selected === Option.None || selected === undefined
+          selected === undefined || selected === Option.None
             ? ""
             : selected === optionValue
             ? styles.selected_option_id

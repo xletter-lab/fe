@@ -23,10 +23,7 @@ export default function SurveyFooter({
   };
   return (
     <div className={styles.container}>
-      <button
-        className={styles.left_button}
-        onClick={onClickLeftButton}
-        disabled={progress < 1}>
+      <button className={styles.left_button} onClick={onClickLeftButton}>
         {leftButtonText}
       </button>
       <button

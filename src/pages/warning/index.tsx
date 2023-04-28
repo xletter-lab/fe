@@ -1,22 +1,27 @@
 import { useRouter } from "next/router";
 import styles from "./index.module.css";
 import Image from "next/image";
+import logo from "../../../public/png/logo.png";
+import { StoryIndex } from "@/types";
 type Props = {};
 export default function Warning({}: Props) {
   const router = useRouter();
-  console.log("router", router.query.email);
+
   const clickButton = () => {
-    router.push(
-      {
-        pathname: "/novel",
-        query: { email: router.query.email },
-      },
-      "/novel"
-    );
+    router.push({
+      pathname: "/novel",
+      query: { storyIndex: StoryIndex.Story1 },
+    });
   };
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>;XLetter</div>
+      <Image
+        alt="logo"
+        src={logo}
+        width={125}
+        height={80}
+        className={styles.logo}
+      />
       <div className={styles.content_container}>
         <div className={styles.content_wrapper}>
           <div className={styles.title}>
@@ -62,7 +67,16 @@ export default function Warning({}: Props) {
                           height={20}
                         />
                       </div>
-                      <div className="">3화</div>
+                      <div className={styles.checkbox_text}>
+                        3화
+                        <Image
+                          className={styles.checkbox}
+                          alt="checkbox"
+                          src={"/png/checkbox.png"}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
                       <div className="">4화</div>
                       <div className={styles.checkbox_text}>
                         5화

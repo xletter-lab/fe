@@ -3,6 +3,7 @@ import styles from "./etc.module.css";
 import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
 import { postSurveyResult, surveyResultType } from "@/api/api";
+import Image from "next/image";
 type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
@@ -61,7 +62,13 @@ export default function ETC({}: Props) {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>;XLetter</div>
+      <Image
+        src={"/png/logo.png"}
+        alt="logo"
+        width={125}
+        height={80}
+        className={styles.logo}
+      />
 
       <div className={styles.content_container}>
         <div>

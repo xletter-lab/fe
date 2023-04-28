@@ -1,8 +1,8 @@
-import { Option, StoryType, StoryIndex } from "@/pages/novel";
 import { useState, useEffect } from "react";
 import styles from "./content.module.css";
 import NoTooltipOption from "../options/noTooptipOption/noTooltipOption";
 import TooltipOption from "../options/tooptipOption/tooltipOption";
+import { Option, StoryIndex, StoryType } from "@/types";
 
 type Props = {
   storyIndex: number;
@@ -22,7 +22,7 @@ export default function Content({ storyIndex, data, onSelectOption }: Props) {
   };
 
   useEffect(() => {
-    if (storyIndex === StoryIndex.Story2) {
+    if (storyIndex === StoryIndex.Story2 && data?.selected === Option.None) {
       handleTooltipOpen();
     }
   }, [storyIndex]);

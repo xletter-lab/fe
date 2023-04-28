@@ -17,7 +17,13 @@ type Props = {
 export default function Done({ item, changeItem }: Props) {
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>;XLetter</div>
+      <Image
+        alt="logo"
+        src={"/png/logo.png"}
+        width={125}
+        height={80}
+        className={styles.logo}
+      />
       <div className={styles.content_container}>
         <div>
           <div className={styles.title}>
