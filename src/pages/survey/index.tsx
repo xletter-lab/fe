@@ -36,7 +36,7 @@ export type OptionType = {
 
 export default function Survey({}: Props) {
   const router = useRouter();
-  const queryStoryIndex = router.query.storyIndex?.toString() ?? "4";
+  const queryStoryIndex = router.query.storyIndex ?? "4";
   const email = router.query.email?.toString();
   const [progress, setProgress] = useState<number>(0);
   const [contents, setContents] = useState<SurveyType>();

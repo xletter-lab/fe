@@ -70,6 +70,7 @@ export default function Novel({}: Props) {
           "xletter_option",
           JSON.stringify(beforeOptions)
         );
+        setAbleToGoNext(true);
       })
       .catch((e) => {
         // 안괜찮으면 다른 옵션 선택했다는 메시지
@@ -101,11 +102,15 @@ export default function Novel({}: Props) {
 
   const goSurvey = () => {
     console.log(storyIndex);
-    router.push("/survey", {
-      query: {
-        storyIndex,
+    router.push(
+      {
+        pathname: "/survey",
+        query: {
+          storyIndex: storyIndex,
+        },
       },
-    });
+      "/survey"
+    );
     window.scrollTo(0, 0);
   };
 
@@ -187,29 +192,36 @@ export default function Novel({}: Props) {
               })
               .catch((e) => {
                 // 모름
-                getNovelStory({
-                  email,
-                  story: storyIndex + 1,
-                  option: Option.B,
-                }).then((realStory) => {
-                  setData({
-                    contents: [res.content, realStory.content],
-                    title: res.title,
-                    withOption: true,
-                    options: [
-                      {
-                        optionId: Option.A,
-                        optionText: res.optionAText,
-                        optionValue: Option.A,
-                      },
-                      {
-                        optionId: Option.B,
-                        optionText: res.optionBText,
-                        optionValue: Option.B,
-                      },
-                    ],
-                    selected: undefined,
-                  });
+                setAbleToGoNext(false);
+                let initialized = defaultOptions;
+                if (storyIndex === StoryIndex.Story2) {
+                  initialized[0] = Option.None;
+                } else if (storyIndex === StoryIndex.Story3) {
+                  initialized[1] = Option.None;
+                } else {
+                  initialized[2] = Option.None;
+                }
+
+                window.localStorage.setItem(
+                  "xletter_option",
+                  JSON.stringify(initialized)
+                );
+                setData({
+                  contents: [res.content],
+                  title: res.title,
+                  withOption: true,
+                  options: [
+                    {
+                      optionId: Option.A,
+                      optionText: res.optionAText,
+                      optionValue: Option.A,
+                    },
+                    {
+                      optionId: Option.B,
+                      optionText: res.optionBText,
+                      optionValue: Option.B,
+                    },
+                  ],
                 });
               });
           }
@@ -242,29 +254,36 @@ export default function Novel({}: Props) {
               })
               .catch((e) => {
                 // 다른 선택지 골랐었다는 메시지
-                getNovelStory({
-                  email,
-                  story: storyIndex + 1,
-                  option: Option.B,
-                }).then((realStory) => {
-                  setData({
-                    contents: [res.content, realStory.content],
-                    title: res.title,
-                    withOption: true,
-                    options: [
-                      {
-                        optionId: Option.A,
-                        optionText: res.optionAText,
-                        optionValue: Option.A,
-                      },
-                      {
-                        optionId: Option.B,
-                        optionText: res.optionBText,
-                        optionValue: Option.B,
-                      },
-                    ],
-                    selected: undefined,
-                  });
+                setAbleToGoNext(false);
+                let initialized = defaultOptions;
+                if (storyIndex === StoryIndex.Story2) {
+                  initialized[0] = Option.None;
+                } else if (storyIndex === StoryIndex.Story3) {
+                  initialized[1] = Option.None;
+                } else {
+                  initialized[2] = Option.None;
+                }
+
+                window.localStorage.setItem(
+                  "xletter_option",
+                  JSON.stringify(initialized)
+                );
+                setData({
+                  contents: [res.content],
+                  title: res.title,
+                  withOption: true,
+                  options: [
+                    {
+                      optionId: Option.A,
+                      optionText: res.optionAText,
+                      optionValue: Option.A,
+                    },
+                    {
+                      optionId: Option.B,
+                      optionText: res.optionBText,
+                      optionValue: Option.B,
+                    },
+                  ],
                 });
               });
           }
@@ -280,14 +299,29 @@ export default function Novel({}: Props) {
         }
 
         // 2. 다음 화 제목 호출
-        if (storyIndex != StoryIndex.Story5) {
+        if (
+          storyIndex != StoryIndex.Story5 &&
+          !withOptionStoryIndex.includes(storyIndex)
+        ) {
+          console.log(
+            storyIndex,
+            withOptionStoryIndex.includes(storyIndex + 1),
+            withOptionStoryIndex,
+            storyIndex + 1,
+            "제목호출용"
+          );
           getNovelStory({
             email,
             story: storyIndex + 2,
             option: Option.None,
-          }).then((nextStory) => {
-            setNextStoryTitle(nextStory.title);
-          });
+          })
+            .then((nextStory) => {
+              setNextStoryTitle(nextStory.title);
+            })
+            .catch((e) => {
+              window.localStorage.set;
+              setStoryIndex(storyIndex - 1);
+            });
         }
 
         // 3. 맨 위로 이동

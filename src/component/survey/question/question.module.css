@@ -1,6 +1,7 @@
 .container {
   /* margin-top: 7%; */
   width: 100vw;
+  min-width: 1200px;
   /* height: 100%; */
 }
 
