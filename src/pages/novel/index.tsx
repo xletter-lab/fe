@@ -19,13 +19,13 @@ const withOptionStoryIndex = [
 
 export default function Novel({}: Props) {
   const router = useRouter();
-  const toastId = useRef(null);
+
   const queryStoryIndex = router.query.storyIndex?.toString() ?? "0";
   const defaultStory: StoryIndex =
     parseInt(queryStoryIndex) ?? StoryIndex.Story1;
 
   const [invalid, setInvalid] = useState<boolean>(false);
-
+  const [ableToGoNext, setAbleToGoNext] = useState<boolean>(true);
   const [storyIndex, setStoryIndex] = useState<StoryIndex>(defaultStory);
   const [nextStoryTitle, setNextStoryTitle] = useState<string>("");
   const [data, setData] = useState<StoryType>({
@@ -138,6 +138,7 @@ export default function Novel({}: Props) {
               : myOptions[2];
           //// None: pass
           if (selected === Option.None) {
+            setAbleToGoNext(false);
             setData({
               contents: [res.content],
               title: res.title,
@@ -156,7 +157,7 @@ export default function Novel({}: Props) {
               ],
             });
           }
-          //// A : 호출 - 에러 없으면 세팅하고 에러 있으면 B로 세팅
+          //// A : 호출 - 에러 없으면 세팅하고 에러 있으면 ?
           else if (selected === Option.A) {
             getNovelStory({
               email,
@@ -182,9 +183,10 @@ export default function Novel({}: Props) {
                   ],
                   selected,
                 });
+                setAbleToGoNext(true);
               })
               .catch((e) => {
-                // 다른 선택지 골랐었다는 메시지
+                // 모름
                 getNovelStory({
                   email,
                   story: storyIndex + 1,
@@ -206,12 +208,12 @@ export default function Novel({}: Props) {
                         optionValue: Option.B,
                       },
                     ],
-                    selected: Option.B,
+                    selected: undefined,
                   });
                 });
               });
           }
-          //// B : 호출 - 에러 없으면 세팅하고 에러 있으면 A로 세팅
+          //// B : 호출 - 에러 없으면 세팅하고 에러 있으면?
           else {
             getNovelStory({
               email,
@@ -261,7 +263,7 @@ export default function Novel({}: Props) {
                         optionValue: Option.B,
                       },
                     ],
-                    selected: Option.B,
+                    selected: undefined,
                   });
                 });
               });
@@ -274,6 +276,7 @@ export default function Novel({}: Props) {
             title: res.title,
             withOption: false,
           });
+          setAbleToGoNext(true);
         }
 
         // 2. 다음 화 제목 호출
@@ -307,6 +310,7 @@ export default function Novel({}: Props) {
           storyIndex={storyIndex}
           getStoryBefore={getStoryBefore}
           getStoryNext={getStoryNext}
+          ableToGoNext={ableToGoNext}
         />
         {storyIndex === StoryIndex.Story1 && (
           <div className={styles.content_warning}>

@@ -7,11 +7,13 @@ type Props = {
   storyIndex?: number;
   getStoryBefore?: () => void;
   getStoryNext?: () => void;
+  ableToGoNext: boolean;
 };
 export default function NovelHeader({
   novelTitle,
   storyTitle,
   storyIndex,
+  ableToGoNext,
   getStoryBefore,
   getStoryNext,
 }: Props) {
@@ -49,7 +51,9 @@ export default function NovelHeader({
         </div>
         <div
           className={`${styles.next_story} ${
-            storyIndex < StoryIndex.Story5 ? "active" : styles.disabled
+            storyIndex < StoryIndex.Story5 && ableToGoNext
+              ? "active"
+              : styles.disabled
           }`}
           onClick={onClickNextButton}>
           다음 화 &gt;
