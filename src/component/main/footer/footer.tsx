@@ -76,14 +76,15 @@ export default function Footer({ changeEmail, clickReadig, email }: Props) {
               height={50}
             />
           </Link>
-
-          <Image
-            className={styles.telegram}
-            alt="telegram"
-            src={"/png/telegram_gray.png"}
-            width={50}
-            height={50}
-          />
+          <Link href={"https://t.me/+CAtOfY-E28QxYWVl"}>
+            <Image
+              className={styles.telegram}
+              alt="telegram"
+              src={"/png/telegram_gray.png"}
+              width={50}
+              height={50}
+            />
+          </Link>
         </div>
         <div className={styles.contact}>
           <div className={styles.mail}>xletter.lab@gmail.com</div>

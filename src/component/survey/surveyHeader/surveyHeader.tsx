@@ -14,11 +14,13 @@ export default function SurveyHeader({ progress }: Props) {
         className={styles.logo}
       />
       <div className={styles.progress_bar}>
-        <div
-          className={styles.active_bar}
-          style={{ width: `${(progress + 1) * 200}px` }}
-        />
-        <div className={styles.total_bar} />
+        <div className={styles.progress_bar_box}>
+          <div
+            className={styles.active_bar}
+            style={{ width: `${(progress + 1) * 200}px` }}
+          />
+          <div className={styles.total_bar} />
+        </div>
       </div>
     </div>
   );

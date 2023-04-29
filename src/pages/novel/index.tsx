@@ -74,11 +74,11 @@ export default function Novel({}: Props) {
       .catch((e) => {
         // 안괜찮으면 다른 옵션 선택했다는 메시지
 
-        toastId.current = toast.error("앗, 선택지 변경은 불가능합니다😥", {
+        toast.error("앗, 선택지 변경은 불가능합니다😥", {
           position: toast.POSITION.BOTTOM_CENTER,
           toastId: "invalid_option",
           hideProgressBar: true,
-          autoClose: 10000,
+          autoClose: 3000,
           className: `${styles.toast_container}`,
           bodyClassName: "",
           closeButton: false,
@@ -91,14 +91,21 @@ export default function Novel({}: Props) {
 
   const getStoryBefore = () => {
     if (storyIndex > StoryIndex.Story1) setStoryIndex(storyIndex - 1);
+    window.scrollTo(0, 0);
   };
 
   const getStoryNext = () => {
     if (storyIndex < StoryIndex.Story5) setStoryIndex(storyIndex + 1);
+    window.scrollTo(0, 0);
   };
 
   const goSurvey = () => {
-    router.push("/survey");
+    console.log(storyIndex);
+    router.push("/survey", {
+      query: {
+        storyIndex,
+      },
+    });
     window.scrollTo(0, 0);
   };
 
@@ -296,23 +303,25 @@ export default function Novel({}: Props) {
       <div className={styles.container}>
         <NovelHeader
           novelTitle="위험한 인터뷰 by 청몽채화"
-          storyTitle={data?.title}
+          storyTitle={`${storyIndex + 1}. ${data?.title}`}
           storyIndex={storyIndex}
           getStoryBefore={getStoryBefore}
           getStoryNext={getStoryNext}
         />
         {storyIndex === StoryIndex.Story1 && (
           <div className={styles.content_warning}>
-            <div className={styles.content_warning_title}>드리는 말씀 </div>
-            <div className={styles.content_warning_content}>
-              본 소설 ‘위험한 인터뷰’는 한 연예인의 우울과 자살을 소재로 하고
-              있습니다. <br />
-              이러한 소재를 다루는 데에 있어 누구에게도 상처가 되지 않을 수
-              있도록 작가님과 X-Letter팀 모두가 고민을 거듭했습니다. <br />이
-              작품은 청몽채화 작가님께서 2016년에 구상하신 후 한 번도 발표된 적
-              없는 내용으로 그 어떤 실제 사건과도 무관하나, <br />
-              혹시라도 심리적인 영향을 받으실 수 있으니 감상 시 유의해 주시고
-              필요시 주위에 도움을 요청하시길 바랍니다. <br />
+            <div>
+              <div className={styles.content_warning_title}>드리는 말씀 </div>
+              <div className={styles.content_warning_content}>
+                본 소설 ‘위험한 인터뷰’는 한 연예인의 우울과 자살을 소재로 하고
+                있습니다. <br />
+                이러한 소재를 다루는 데에 있어 누구에게도 상처가 되지 않을 수
+                있도록 작가님과 X-Letter팀 모두가 고민을 거듭했습니다. <br />이
+                작품은 청몽채화 작가님께서 2016년에 구상하신 후 한 번도 발표된
+                적 없는 내용으로 그 어떤 실제 사건과도 무관하나, <br />
+                혹시라도 심리적인 영향을 받으실 수 있으니 감상 시 유의해 주시고
+                필요시 주위에 도움을 요청하시길 바랍니다. <br />
+              </div>
             </div>
           </div>
         )}
@@ -338,6 +347,7 @@ export default function Novel({}: Props) {
             goSurvey={goSurvey}
             nextStoryIndex={storyIndex + 2}
             nextStoryTitle={nextStoryTitle}
+            storyIndex={storyIndex}
           />
         )}
       </div>

@@ -8,7 +8,7 @@
   padding-bottom: 272px;
 }
 .logo_image {
-  height: 100%;
+  height: fit-content;
 }
 .logo {
   font-family: "Dokdo";
@@ -72,16 +72,16 @@
   color: black;
 }
 .toast_container {
-  font-size: 14px;
-  border-radius: 21px;
-  border: none;
-  padding: 4px 24px;
-  color: white;
-  background: #666666;
-  width: 450px;
-  height: 25px;
-  margin-top: 10px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
+  font-size: 14px !important;
+  border-radius: 21px !important;
+  border: none !important;
+  padding: 4px 24px !important;
+  color: white !important;
+  background: #666666 !important;
+  width: 450px !important;
+  height: 25px !important;
+  margin-top: 10px !important;
+  justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
 }

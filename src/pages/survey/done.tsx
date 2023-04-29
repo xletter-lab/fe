@@ -55,14 +55,15 @@ export default function Done({ item, changeItem }: Props) {
                 height={60}
               />
             </Link>
-
-            <Image
-              className={styles.telegram}
-              alt="telegram"
-              src={"/png/telegram.png"}
-              width={60}
-              height={60}
-            />
+            <Link href="https://t.me/+CAtOfY-E28QxYWVl">
+              <Image
+                className={styles.telegram}
+                alt="telegram"
+                src={"/png/telegram.png"}
+                width={60}
+                height={60}
+              />
+            </Link>
           </div>
         </div>
       </div>

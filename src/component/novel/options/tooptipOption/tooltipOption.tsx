@@ -58,7 +58,7 @@ export default function TooltipOption({
     },
   }));
 
-  console.log("tooltipOption", tooltipOpen, selected, Option.None);
+  console.log("tooltipOption", tooltipOpen, selected);
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.container}>
@@ -96,7 +96,11 @@ export default function TooltipOption({
                 "두 선택지 중 한 가지를 골라 클릭하시면 다음 내용이 나타납니다.한 번 클릭하면 되돌릴 수 없으니 신중히 선택해주세요!"
               }
               arrow
-              open={tooltipOpen}
+              open={
+                selected !== undefined && selected !== Option.None
+                  ? false
+                  : tooltipOpen
+              }
               onClose={handleTooltipClose}
               disableHoverListener
               disableFocusListener

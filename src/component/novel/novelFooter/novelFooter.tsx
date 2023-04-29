@@ -6,10 +6,12 @@ type Props = {
   goSurvey?: () => void;
   nextStoryIndex?: number;
   nextStoryTitle?: string;
+  storyIndex: number;
 };
 export default function NovelFooter({
   getStoryNext,
   goSurvey,
+  storyIndex,
   isLastStory = false,
   nextStoryIndex = 1,
   nextStoryTitle = "",
@@ -26,14 +28,16 @@ export default function NovelFooter({
         <div className={styles.container}>
           <div>
             <div className={styles.text}>
-              &#40;소설 내용 관련 카피 문구&#41;
+              ‘위험한 인터뷰’를 끝까지 읽어주신 여러분 감사합니다🙇‍♀
             </div>
             <div className={styles.sub_text}>
               재미있게 읽으셨다면 평가 설문 참여하고 에어드랍 받아가세요!
             </div>
-            <button className={styles.button_next} onClick={clickStop}>
-              XLetter 평가하러 가기
-            </button>
+            <div className={styles.footer_button}>
+              <button className={styles.button_next} onClick={clickStop}>
+                XLetter 평가하러 가기
+              </button>
+            </div>
           </div>
         </div>
       ) : (

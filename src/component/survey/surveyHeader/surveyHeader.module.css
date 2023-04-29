@@ -19,16 +19,28 @@
 
 .progress_bar {
   display: flex;
-  height: 0px;
+  height: 80px;
+  position: absolute;
+  left: 0px;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+}
+
+.progress_bar_box {
+  width: 800px;
+  height: 5px;
+  display: flex;
+  justify-content: flex-start;
   position: relative;
-  width: 80%;
+  left: 0px;
 }
 
 .active_bar {
   height: 5px;
   background-color: var(--main-color);
   border-radius: 8px;
-  position: absolute;
+  position: relative;
   left: 0px;
   z-index: 2;
 }

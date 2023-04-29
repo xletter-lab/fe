@@ -31,7 +31,7 @@
 }
 
 .unselected_option {
-  display: none;
+  visibility: hidden;
 }
 
 .option_id {
@@ -67,5 +67,6 @@
 }
 
 .no_tooltip {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }

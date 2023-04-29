@@ -1,9 +1,12 @@
 .novel_footer_container {
+  height: calc(100vh - 132px);
+  width: 100vw;
+  background-color: black;
 }
 .container {
   width: 100%;
   height: 572px;
-  background-color: black;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,6 +21,7 @@
   text-align: center;
   line-height: 180%;
   margin-bottom: 16px;
+  text-align: center;
 }
 .button_next {
   width: 400px;
@@ -40,10 +44,16 @@
   line-height: 25px;
   font-weight: 600;
 }
+.footer_button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .sub_text {
   font-size: 18px;
   font-weight: 500;
   line-height: 22px;
   color: var(--gray-font);
   margin-bottom: 25px;
+  text-align: center;
 }

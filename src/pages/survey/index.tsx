@@ -36,18 +36,19 @@ export type OptionType = {
 
 export default function Survey({}: Props) {
   const router = useRouter();
+  const queryStoryIndex = router.query.storyIndex?.toString() ?? "4";
   const email = router.query.email?.toString();
   const [progress, setProgress] = useState<number>(0);
   const [contents, setContents] = useState<SurveyType>();
   const [isDone, setIsDone] = useState<boolean>(false);
-  console.log("progress", progress);
+  console.log(router.query, "queryStoryIndex", queryStoryIndex);
 
   const clickBeforeButton = () => {
     if (progress == 0) {
       // 이전에 읽던 소설 화면으로 넘어간다는 툴팁
       router.push({
         pathname: "/novel",
-        query: { storyIndex: StoryIndex.Story5 },
+        query: { storyIndex: queryStoryIndex },
       });
     } else {
       setProgress(progress - 1);
