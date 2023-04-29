@@ -65,7 +65,6 @@ export const getNovelStory = async ({
       if (res.data.result === null) {
         throw new Error("Invalid access");
       } else {
-        console.log(res.data.result);
         return res.data.result;
       }
     })

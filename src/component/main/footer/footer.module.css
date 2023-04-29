@@ -1,5 +1,6 @@
 .container {
-  height: 400px;
+  height: 100%;
+  min-height: 425px;
   background-color: black;
   padding-left: 60px;
   padding-right: 60px;
@@ -40,22 +41,19 @@
   color: var(--gray-font);
 }
 
+.email_area {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .email_input_area {
   background-color: black;
   margin-top: 38px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  width: 100%;
-}
-
-.email_input_wrapper {
-  /* background-color: black;
-  margin-top: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%; */
+  width: 500px;
 }
 
 .email_input {
@@ -78,4 +76,27 @@
   border: none;
   position: relative;
   color: black;
+}
+.toast_area {
+  position: relative;
+  top: 0px;
+  height: 0px;
+  display: flex;
+  justify-content: center;
+}
+.toast_container {
+  position: relative;
+  top: 0px;
+  font-size: 14px;
+  border-radius: 21px;
+  border: none;
+  padding: 4px 24px;
+  color: white;
+  background: #666666;
+  width: 450px;
+  height: 25px;
+  margin-top: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }

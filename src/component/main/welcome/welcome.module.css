@@ -71,3 +71,17 @@
   position: relative;
   color: black;
 }
+.toast_container {
+  font-size: 14px;
+  border-radius: 21px;
+  border: none;
+  padding: 4px 24px;
+  color: white;
+  background: #666666;
+  width: 450px;
+  height: 25px;
+  margin-top: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

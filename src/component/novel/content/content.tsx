@@ -22,7 +22,10 @@ export default function Content({ storyIndex, data, onSelectOption }: Props) {
   };
 
   useEffect(() => {
-    if (storyIndex === StoryIndex.Story2 && data?.selected === Option.None) {
+    if (
+      storyIndex === StoryIndex.Story2 &&
+      (data?.selected === Option.None || data?.selected === undefined)
+    ) {
       handleTooltipOpen();
     }
   }, [storyIndex]);

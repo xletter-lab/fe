@@ -116,6 +116,12 @@ export default function Warning({}: Props) {
                 </div>
               </div>
             </div>
+            <div className={`${styles.text_gray} ${styles.warnig_text}`}>
+              ※ 본 소설 ‘위험한 인터뷰’는 한 연예인의 우울을 소재로 하고
+              있습니다. <br />
+              혹시라도 이 작품의 소재로 인해 심리적인 영향을 받으실 수 있으니
+              감상 시 유의해 주시고 필요시 주위에 도움을 요청하시길 바랍니다.
+            </div>
             <div className={styles.button_area}>
               <button className={styles.button} onClick={clickButton}>
                 모두 확인했어요!

@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./index.module.css";
 import NovelHeader from "@/component/novel/novelHeader/novelHeader";
 import NovelFooter from "@/component/novel/novelFooter/novelFooter";
 import Content from "@/component/novel/content/content";
 import { getNovelStory } from "@/api/api";
 import { Option, StoryIndex, StoryType, defaultOptions } from "@/types";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 type Props = {};
 
@@ -17,6 +19,7 @@ const withOptionStoryIndex = [
 
 export default function Novel({}: Props) {
   const router = useRouter();
+  const toastId = useRef(null);
   const queryStoryIndex = router.query.storyIndex?.toString() ?? "0";
   const defaultStory: StoryIndex =
     parseInt(queryStoryIndex) ?? StoryIndex.Story1;
@@ -38,6 +41,7 @@ export default function Novel({}: Props) {
       data?.selected != Option.None);
 
   const onClickOption = (option: Option) => {
+    toast.dismiss();
     let beforeOptions =
       JSON.parse(window.localStorage.getItem("xletter_options")) ??
       defaultOptions;
@@ -69,30 +73,16 @@ export default function Novel({}: Props) {
       })
       .catch((e) => {
         // 안괜찮으면 다른 옵션 선택했다는 메시지
-        let realOption = option === Option.A ? Option.B : Option.A;
-        getNovelStory({
-          email,
-          story: storyIndex + 1,
-          option: realOption,
-        }).then((res) => {
-          setData({
-            ...data,
-            contents: [...data.contents, res.content],
-            selected: realOption,
-          });
 
-          // localstorage update
-          if (storyIndex === StoryIndex.Story2) {
-            beforeOptions[0] = realOption;
-          } else if (storyIndex === StoryIndex.Story3) {
-            beforeOptions[1] = realOption;
-          } else {
-            beforeOptions[2] = realOption;
-          }
-          window.localStorage.setItem(
-            "xletter_option",
-            JSON.stringify(beforeOptions)
-          );
+        toastId.current = toast.error("앗, 선택지 변경은 불가능합니다😥", {
+          position: toast.POSITION.BOTTOM_CENTER,
+          toastId: "invalid_option",
+          hideProgressBar: true,
+          autoClose: 10000,
+          className: `${styles.toast_container}`,
+          bodyClassName: "",
+          closeButton: false,
+          icon: false,
         });
       });
 
@@ -311,6 +301,21 @@ export default function Novel({}: Props) {
           getStoryBefore={getStoryBefore}
           getStoryNext={getStoryNext}
         />
+        {storyIndex === StoryIndex.Story1 && (
+          <div className={styles.content_warning}>
+            <div className={styles.content_warning_title}>드리는 말씀 </div>
+            <div className={styles.content_warning_content}>
+              본 소설 ‘위험한 인터뷰’는 한 연예인의 우울과 자살을 소재로 하고
+              있습니다. <br />
+              이러한 소재를 다루는 데에 있어 누구에게도 상처가 되지 않을 수
+              있도록 작가님과 X-Letter팀 모두가 고민을 거듭했습니다. <br />이
+              작품은 청몽채화 작가님께서 2016년에 구상하신 후 한 번도 발표된 적
+              없는 내용으로 그 어떤 실제 사건과도 무관하나, <br />
+              혹시라도 심리적인 영향을 받으실 수 있으니 감상 시 유의해 주시고
+              필요시 주위에 도움을 요청하시길 바랍니다. <br />
+            </div>
+          </div>
+        )}
         <div className={styles.novel_container}>
           <div className={styles.novel}>
             <div className={styles.story_title}>{data?.title}</div>
@@ -320,6 +325,9 @@ export default function Novel({}: Props) {
                 data={data}
                 onSelectOption={onClickOption}
               />
+              <div className={styles.toast_wrapper}>
+                <ToastContainer limit={1} />
+              </div>
             </div>
           </div>
         </div>
