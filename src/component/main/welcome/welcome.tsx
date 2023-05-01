@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "../../../../public/png/logo.png";
 import styles from "./welcome.module.css";
-import { getNovelStory } from "@/api/api";
+import { getValidUser } from "@/api/api";
 import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { Option } from "@/types";
@@ -12,7 +12,7 @@ type Props = {
 };
 export default function Welcome({ email, changeEmail, clickReadig }: Props) {
   const onClickButton = () => {
-    getNovelStory({ email, option: Option.None, story: 1 })
+    getValidUser({ email })
       .then((res) => {
         clickReadig();
         toast.dismiss();

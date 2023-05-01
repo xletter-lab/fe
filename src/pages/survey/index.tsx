@@ -150,6 +150,10 @@ export default function Survey({}: Props) {
     });
   }, []);
 
+  useEffect(() => {
+    setIsDone(false);
+  }, [progress]);
+
   return (
     <div className={styles.survey_container}>
       <SurveyHeader progress={progress} />

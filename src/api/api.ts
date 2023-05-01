@@ -73,3 +73,36 @@ export const getNovelStory = async ({
       throw new Error("error");
     });
 };
+export const getNovelTitle = async ({ idx }: { idx: number }) => {
+  console.log(idx);
+  return await axios
+    .get(`/novel-title/${idx}`)
+    .then((res) => {
+      if (res.data.result === null) {
+        throw new Error("Invalid access");
+      } else {
+        console.log(res.data.result);
+        return res.data.result;
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      throw new Error("error");
+    });
+};
+
+export const getValidUser = async ({ email }: { email: string }) => {
+  return await axios
+    .get(`valid-user/${email}`)
+    .then((res) => {
+      if (res.data.result === null) {
+        throw new Error("Invalid access");
+      } else {
+        return res.data.result;
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      throw new Error("error");
+    });
+};

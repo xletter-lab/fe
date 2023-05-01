@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./footer.module.css";
 import Link from "next/link";
-import { getNovelStory } from "@/api/api";
+import { getValidUser } from "@/api/api";
 import { toast, ToastContainer } from "react-toastify";
 import { Option } from "@/types";
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 };
 export default function Footer({ changeEmail, clickReadig, email }: Props) {
   const onClickButton = () => {
-    getNovelStory({ email, option: Option.None, story: 1 })
+    getValidUser({ email })
       .then((res) => {
         clickReadig();
         toast.dismiss();

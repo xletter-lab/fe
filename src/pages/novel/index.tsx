@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 import NovelHeader from "@/component/novel/novelHeader/novelHeader";
 import NovelFooter from "@/component/novel/novelFooter/novelFooter";
 import Content from "@/component/novel/content/content";
-import { getNovelStory } from "@/api/api";
+import { getNovelStory, getNovelTitle } from "@/api/api";
 import { Option, StoryIndex, StoryType, defaultOptions } from "@/types";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
@@ -189,6 +189,24 @@ export default function Novel({}: Props) {
                   selected,
                 });
                 setAbleToGoNext(true);
+                getNovelTitle({ idx: storyIndex + 2 })
+                  .then((nextTitle) => {
+                    if (nextTitle) {
+                      setNextStoryTitle(nextTitle.toString());
+                    }
+                  })
+                  .catch((e) => {
+                    //window.localStorage.set;
+                    if (storyIndex === StoryIndex.Story1) {
+                      setNextStoryTitle("비밀을 공유하는 사이");
+                    } else if (storyIndex === StoryIndex.Story2) {
+                      setNextStoryTitle("달콤쌉싸름한 계절");
+                    } else if (storyIndex === StoryIndex.Story3) {
+                      setNextStoryTitle("쓸개 빠진 놈");
+                    } else {
+                      setNextStoryTitle("내 손 끝에 달린 세계");
+                    }
+                  });
               })
               .catch((e) => {
                 // 모름
@@ -251,6 +269,24 @@ export default function Novel({}: Props) {
                   ],
                   selected,
                 });
+                getNovelTitle({ idx: storyIndex + 2 })
+                  .then((nextTitle) => {
+                    if (nextTitle) {
+                      setNextStoryTitle(nextTitle.toString());
+                    }
+                  })
+                  .catch((e) => {
+                    //window.localStorage.set;
+                    if (storyIndex === StoryIndex.Story1) {
+                      setNextStoryTitle("비밀을 공유하는 사이");
+                    } else if (storyIndex === StoryIndex.Story2) {
+                      setNextStoryTitle("달콤쌉싸름한 계절");
+                    } else if (storyIndex === StoryIndex.Story3) {
+                      setNextStoryTitle("쓸개 빠진 놈");
+                    } else {
+                      setNextStoryTitle("내 손 끝에 달린 세계");
+                    }
+                  });
               })
               .catch((e) => {
                 // 다른 선택지 골랐었다는 메시지
@@ -297,7 +333,7 @@ export default function Novel({}: Props) {
           });
           setAbleToGoNext(true);
         }
-
+        console.log("storyIndex", storyIndex, withOptionStoryIndex);
         // 2. 다음 화 제목 호출
         if (
           storyIndex != StoryIndex.Story5 &&
@@ -310,17 +346,23 @@ export default function Novel({}: Props) {
             storyIndex + 1,
             "제목호출용"
           );
-          getNovelStory({
-            email,
-            story: storyIndex + 2,
-            option: Option.None,
-          })
-            .then((nextStory) => {
-              setNextStoryTitle(nextStory.title);
+          getNovelTitle({ idx: storyIndex + 2 })
+            .then((nextTitle) => {
+              if (nextTitle) {
+                setNextStoryTitle(nextTitle.toString());
+              }
             })
             .catch((e) => {
-              window.localStorage.set;
-              setStoryIndex(storyIndex - 1);
+              //window.localStorage.set;
+              if (storyIndex === StoryIndex.Story1) {
+                setNextStoryTitle("비밀을 공유하는 사이");
+              } else if (storyIndex === StoryIndex.Story2) {
+                setNextStoryTitle("달콤쌉싸름한 계절");
+              } else if (storyIndex === StoryIndex.Story3) {
+                setNextStoryTitle("쓸개 빠진 놈");
+              } else {
+                setNextStoryTitle("내 손 끝에 달린 세계");
+              }
             });
         }
 
