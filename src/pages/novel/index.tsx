@@ -47,6 +47,10 @@ export default function Novel({}: Props) {
       defaultOptions;
     let email = window.localStorage.getItem("xletter_email");
     // 먼저 요청 보내고 괜찮으면 저장
+    console.log("before options", beforeOptions);
+    console.log("email", email);
+    console.log("current option", option);
+    console.log("story", storyIndex + 1);
     getNovelStory({
       email,
       story: storyIndex + 1,
@@ -71,6 +75,7 @@ export default function Novel({}: Props) {
           JSON.stringify(beforeOptions)
         );
         setAbleToGoNext(true);
+        console.log("after", beforeOptions, "story", storyIndex + 1);
       })
       .catch((e) => {
         // 안괜찮으면 다른 옵션 선택했다는 메시지
@@ -102,13 +107,12 @@ export default function Novel({}: Props) {
 
   const goSurvey = () => {
     console.log(storyIndex);
-    
+
     router.push(
       {
         pathname: "/survey",
         query: {
           storyIndex: storyIndex,
-        
         },
       },
       "/survey"

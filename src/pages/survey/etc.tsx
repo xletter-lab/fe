@@ -51,6 +51,7 @@ export default function ETC({}: Props) {
           .flat(),
         { questionId: 12, responseText: text },
         { questionId: 13, responseText: wallet },
+        
       ]
         .flat()
         .filter((item) => item !== undefined),
