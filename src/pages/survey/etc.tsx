@@ -7,9 +7,9 @@ import Image from "next/image";
 type Props = {};
 export default function ETC({}: Props) {
   const router = useRouter();
-  const email = router.query.email?.toString();
+
   const content = JSON.parse(router?.query?.contents?.toString() ?? "{}");
-  console.log(content);
+
   const [text, setText] = useState<string>("");
   const [wallet, setWallet] = useState<string>("");
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -53,7 +53,8 @@ export default function ETC({}: Props) {
         .flat()
         .filter((item) => item !== undefined),
     };
-
+    const email = window.localStorage.getItem("xletter_email") ?? "";
+    console.log("email", email);
     postSurveyResult(temp.sid, email, temp.res).then((res) => {
       console.log(res);
     });

@@ -102,11 +102,13 @@ export default function Novel({}: Props) {
 
   const goSurvey = () => {
     console.log(storyIndex);
+    
     router.push(
       {
         pathname: "/survey",
         query: {
           storyIndex: storyIndex,
+        
         },
       },
       "/survey"

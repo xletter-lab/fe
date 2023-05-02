@@ -37,7 +37,7 @@ export type OptionType = {
 export default function Survey({}: Props) {
   const router = useRouter();
   const queryStoryIndex = router.query.storyIndex ?? "4";
-  const email = router.query.email?.toString();
+
   const [progress, setProgress] = useState<number>(0);
   const [contents, setContents] = useState<SurveyType>();
   const [isDone, setIsDone] = useState<boolean>(false);
@@ -63,7 +63,7 @@ export default function Survey({}: Props) {
       router.push(
         {
           pathname: "/survey/etc",
-          query: { contents: JSON.stringify(contents), email },
+          query: { contents: JSON.stringify(contents) },
         },
         "/survey/etc"
       );
