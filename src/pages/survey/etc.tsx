@@ -23,6 +23,8 @@ export default function ETC({}: Props) {
     router.push("/survey/");
   };
   const onClickRightButton = () => {
+    console.log("text", text);
+    console.log("wallet", wallet);
     const temp = {
       sid: content.surveyId,
       res: [
@@ -47,8 +49,8 @@ export default function ETC({}: Props) {
             });
           })
           .flat(),
-        { questionId: 12, resonseText: text },
-        { questionId: 13, resonseText: wallet },
+        { questionId: 12, responseText: text },
+        { questionId: 13, responseText: wallet },
       ]
         .flat()
         .filter((item) => item !== undefined),
