@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Script from "next/script";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const id = "G-ZTED4KLVJS";
   return (
     <>
       <Script id={"beusable_script"} strategy="beforeInteractive">
@@ -20,8 +21,8 @@ export default function App({ Component, pageProps }: AppProps) {
           `}
       </Script>
       <Script
-        strategy="beforeInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-ZTED4KLVJS"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
         id="google_script">
         {`
          
@@ -29,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
           
-            gtag('config', 'G-ZTED4KLVJS');
+            gtag('config', ${id});
          
           `}
       </Script>
