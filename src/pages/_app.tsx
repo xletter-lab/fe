@@ -19,6 +19,19 @@ export default function App({ Component, pageProps }: AppProps) {
           })(window, document, "//rum.beusable.net/load/b230503e181523u574");
           `}
       </Script>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-ZTED4KLVJS"
+        id="google_script">
+        {`
+         
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-ZTED4KLVJS');
+         
+          `}
+      </Script>
       <Component {...pageProps} />
     </>
   );
