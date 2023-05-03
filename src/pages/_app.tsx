@@ -5,9 +5,8 @@ import Script from "next/script";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Script id={"beusable_script"} strategy="afterInteractive">
+      <Script id={"beusable_script"} strategy="beforeInteractive">
         {`
-          
           (function(w, d, a){
               w.__beusablerumclient__ = {
                   load : function(src){
