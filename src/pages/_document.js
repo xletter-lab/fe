@@ -8,7 +8,11 @@ export default function Document() {
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZTED4KLVJS"></script>
       </Head>
+
       <body>
         <Main />
         <NextScript />

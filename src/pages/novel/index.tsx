@@ -257,6 +257,8 @@ export default function Novel({}: Props) {
               option: Option.None,
             })
               .then((secondStory) => {
+                console.log('res', res)
+                console.log('secondStory', secondStory)
                 setData({
                   contents: [res.content, secondStory.content],
                   title: res.title,
