@@ -5,7 +5,7 @@ axios.defaults.baseURL = "https://api.xletter.io";
 
 export const getAllSurvey = async () => {
   return await axios.get("/survey/current").then((res) => {
-    console.log(res);
+    // console.log(res);
     return {
       surveyId: res.data?.[0].surveyId,
       totalQuestionGroups: res.data?.[0].totalQuestionGroups.map((group) => {
@@ -37,9 +37,9 @@ export const postSurveyResult = async (
   email: string,
   responses: surveyResultType[]
 ) => {
-  console.log("id", surveyId);
-  console.log("emil", email);
-  console.log("res", responses);
+  // console.log("id", surveyId);
+  // console.log("emil", email);
+  // console.log("res", responses);
   return await axios.post("/survey/submit", {
     surveyId,
     email,
@@ -56,7 +56,7 @@ export const getNovelStory = async ({
   story: number;
   option: Option;
 }) => {
-  console.log("meail", email, "story", story, "option", option);
+  // console.log("meail", email, "story", story, "option", option);
   return await axios
     .get(`/novel/${email}/${story}/${option}`, {
       // withCredentials: true,
@@ -69,24 +69,24 @@ export const getNovelStory = async ({
       }
     })
     .catch((e) => {
-      console.log(e);
+      // console.log(e);
       throw new Error("error");
     });
 };
 export const getNovelTitle = async ({ idx }: { idx: number }) => {
-  console.log(idx);
+  // console.log(idx);
   return await axios
     .get(`/novel-title/${idx}`)
     .then((res) => {
       if (res.data.result === null) {
         throw new Error("Invalid access");
       } else {
-        console.log(res.data.result);
+        // console.log(res.data.result);
         return res.data.result;
       }
     })
     .catch((e) => {
-      console.log(e);
+      // console.log(e);
       throw new Error("error");
     });
 };
@@ -102,7 +102,7 @@ export const getValidUser = async ({ email }: { email: string }) => {
       }
     })
     .catch((e) => {
-      console.log(e);
+      // console.log(e);
       throw new Error("error");
     });
 };

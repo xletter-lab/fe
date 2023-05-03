@@ -47,10 +47,10 @@ export default function Novel({}: Props) {
       defaultOptions;
     let email = window.localStorage.getItem("xletter_email");
     // 먼저 요청 보내고 괜찮으면 저장
-    console.log("before options", beforeOptions);
-    console.log("email", email);
-    console.log("current option", option);
-    console.log("story", storyIndex + 1);
+    // console.log("before options", beforeOptions);
+    // console.log("email", email);
+    // console.log("current option", option);
+    // console.log("story", storyIndex + 1);
     getNovelStory({
       email,
       story: storyIndex + 1,
@@ -75,7 +75,7 @@ export default function Novel({}: Props) {
           JSON.stringify(beforeOptions)
         );
         setAbleToGoNext(true);
-        console.log("after", beforeOptions, "story", storyIndex + 1);
+        // console.log("after", beforeOptions, "story", storyIndex + 1);
       })
       .catch((e) => {
         // 안괜찮으면 다른 옵션 선택했다는 메시지
@@ -92,7 +92,7 @@ export default function Novel({}: Props) {
         });
       });
 
-    console.log("after", beforeOptions);
+    // console.log("after", beforeOptions);
   };
 
   const getStoryBefore = () => {
@@ -106,7 +106,7 @@ export default function Novel({}: Props) {
   };
 
   const goSurvey = () => {
-    console.log(storyIndex);
+    // console.log(storyIndex);
 
     router.push(
       {
@@ -130,7 +130,7 @@ export default function Novel({}: Props) {
       );
       myOptions = defaultOptions;
     }
-    console.log("myOptions", myOptions, "storyIndex", storyIndex);
+    // console.log("myOptions", myOptions, "storyIndex", storyIndex);
     // 1. 첫 번째 파트 호출
     getNovelStory({
       email,
@@ -138,7 +138,7 @@ export default function Novel({}: Props) {
       option: Option.None,
     })
       .then((res) => {
-        console.log("첫 번째 파트 호출", res);
+        // console.log("첫 번째 파트 호출", res);
         // 1.1 선택지 있는 화-다음 옵션에 따라
         if (withOptionStoryIndex.includes(storyIndex)) {
           let selected =
@@ -339,19 +339,19 @@ export default function Novel({}: Props) {
           });
           setAbleToGoNext(true);
         }
-        console.log("storyIndex", storyIndex, withOptionStoryIndex);
+        // console.log("storyIndex", storyIndex, withOptionStoryIndex);
         // 2. 다음 화 제목 호출
         if (
           storyIndex != StoryIndex.Story5 &&
           !withOptionStoryIndex.includes(storyIndex)
         ) {
-          console.log(
-            storyIndex,
-            withOptionStoryIndex.includes(storyIndex + 1),
-            withOptionStoryIndex,
-            storyIndex + 1,
-            "제목호출용"
-          );
+          // console.log(
+          //   storyIndex,
+          //   withOptionStoryIndex.includes(storyIndex + 1),
+          //   withOptionStoryIndex,
+          //   storyIndex + 1,
+          //   "제목호출용"
+          // );
           getNovelTitle({ idx: storyIndex + 2 })
             .then((nextTitle) => {
               if (nextTitle) {

@@ -23,8 +23,8 @@ export default function ETC({}: Props) {
     router.push("/survey/");
   };
   const onClickRightButton = () => {
-    console.log("text", text);
-    console.log("wallet", wallet);
+    // console.log("text", text);
+    // console.log("wallet", wallet);
     const temp = {
       sid: content.surveyId,
       res: [
@@ -51,15 +51,14 @@ export default function ETC({}: Props) {
           .flat(),
         { questionId: 12, responseText: text },
         { questionId: 13, responseText: wallet },
-        
       ]
         .flat()
         .filter((item) => item !== undefined),
     };
     const email = window.localStorage.getItem("xletter_email") ?? "";
-    console.log("email", email);
+    // console.log("email", email);
     postSurveyResult(temp.sid, email, temp.res).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
 
     router.push("/survey/done");

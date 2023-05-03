@@ -58,7 +58,7 @@ export default function TooltipOption({
     },
   }));
 
-  console.log("tooltipOption", tooltipOpen, selected);
+  // console.log("tooltipOption", tooltipOpen, selected);
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.container}>

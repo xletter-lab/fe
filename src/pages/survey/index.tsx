@@ -41,7 +41,7 @@ export default function Survey({}: Props) {
   const [progress, setProgress] = useState<number>(0);
   const [contents, setContents] = useState<SurveyType>();
   const [isDone, setIsDone] = useState<boolean>(false);
-  console.log(router.query, "queryStoryIndex", queryStoryIndex);
+  // console.log(router.query, "queryStoryIndex", queryStoryIndex);
 
   const clickBeforeButton = () => {
     if (progress == 0) {
@@ -52,12 +52,14 @@ export default function Survey({}: Props) {
       });
     } else {
       setProgress(progress - 1);
+      setIsDone(true);
     }
   };
 
   const clickNextButton = () => {
     if (progress < 3) {
       setProgress(progress + 1);
+      setIsDone(false);
       window.scrollTo(0, 0);
     } else {
       router.push(
@@ -149,10 +151,6 @@ export default function Survey({}: Props) {
       setContents(res);
     });
   }, []);
-
-  useEffect(() => {
-    setIsDone(false);
-  }, [progress]);
 
   return (
     <div className={styles.survey_container}>
