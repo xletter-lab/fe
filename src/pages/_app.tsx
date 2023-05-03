@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           `}
       </Script>
       <Script
+        strategy="beforeInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-ZTED4KLVJS"
         id="google_script">
         {`
