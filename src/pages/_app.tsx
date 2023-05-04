@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
           `}
       </Script>
       <Script
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
         id="google_script">
         {`
