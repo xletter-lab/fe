@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  border: 1px solid var(--gray-font);
+  border-radius: 10px;
+  min-width: 800px;
+  max-width: 800px;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  color: var(--gray-font);
+  background-color: white;
+}
+
+.selected_option {
+  border: 1px solid var(--hot-pink-font);
+  color: var(--hot-pink-font);
+  background-color: var(--tooltip-background);
+}
+
+.unselected_option {
+  display: none;
+}
+
+.option_id {
+  border: 1px solid var(--gray-font);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selected_option_id {
+  border: 1px solid var(--hot-pink-font);
+}
+.option_text {
+  height: 21px;
+}

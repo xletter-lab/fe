@@ -1,0 +1,48 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  min-width: 660px;
+  position: relative;
+  top: 0px;
+}
+.logo {
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: none;
+  position: relative;
+  left: 40px;
+}
+.content_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "SUIT-R";
+  height: calc(100% - 80px);
+  position: relative;
+  bottom: 80px;
+}
+.title {
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 180%;
+  text-align: center;
+}
+.text {
+  font-weight: 600;
+  size: 16px;
+  color: var(--gray-font);
+  text-align: center;
+}
+.sns {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.discord {
+  margin-right: 20px;
+}
+.twitter {
+  margin-right: 20px;
+}
+.telegram {
+}

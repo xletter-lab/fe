@@ -1,0 +1,102 @@
+.container {
+  height: 100%;
+  min-height: 425px;
+  background-color: black;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+.content {
+  display: flex;
+  position: relative;
+  top: 256px;
+  justify-content: space-between;
+}
+.logo {
+  background: url("../../../../public/png/logo_white.png");
+  width: 145px;
+  height: 80px;
+}
+.sns {
+  display: flex;
+  justify-content: space-between;
+  width: 170px;
+  height: 50px;
+}
+.discord {
+}
+.twitter {
+}
+.telegram {
+}
+.contact {
+  font-family: "SUIT-R";
+  font-weight: 500;
+  font-size: 16px;
+  text-align: right;
+}
+.mail {
+  color: var(--gray-font);
+}
+.copyright {
+  color: var(--gray-font);
+}
+
+.email_area {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.email_input_area {
+  background-color: black;
+  margin-top: 38px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 500px;
+}
+
+.email_input {
+  width: 500px;
+  min-width: 452px;
+  height: 24px;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  position: relative;
+  left: 86px;
+}
+.email_button {
+  min-width: 86px;
+  height: 48px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  border: none;
+  position: relative;
+  color: black;
+}
+.toast_area {
+  position: relative;
+  top: 0px;
+  height: 0px;
+  display: flex;
+  justify-content: center;
+}
+.toast_container {
+  position: relative;
+  top: 0px;
+  font-size: 14px;
+  border-radius: 21px;
+  border: none;
+  padding: 4px 24px;
+  color: white;
+  background: #666666;
+  width: 450px;
+  height: 25px;
+  margin-top: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

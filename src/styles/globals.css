@@ -27,23 +27,20 @@
 
 * {
   font-family: "SUIT-R";
-  font-size: 20px;
-  line-height: 24px;
-  color: black;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
 .bold {
   font-family: "SUIT-B";
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 :root {
-  --main-color: #f6a5c9;
+  --main-color: #e9487e;
   --gray-font: #929292;
   --highlight-color: #ff6666;
   --border-color: #c7c7c7;
@@ -52,4 +49,5 @@
   --hot-pink-font: #ed497b;
   --pale-pink-background: #ffe0ee;
   --background-black: #454545;
+  --tooltip-background: #ffe0ee;
 }

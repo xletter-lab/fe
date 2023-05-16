@@ -1,6 +1,0 @@
-.bodyLayout{
-    width: 100-(1440/(198px*2))vw;
-    display: flex;
-    justify-content: center;
-
-}

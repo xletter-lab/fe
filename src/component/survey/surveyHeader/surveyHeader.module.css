@@ -1,0 +1,56 @@
+.container {
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+  position: relative;
+  top: 0px;
+}
+
+.logo {
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: none;
+  position: relative;
+  top: 0px;
+}
+
+.progress_bar {
+  display: flex;
+  height: 80px;
+  position: absolute;
+  left: 0px;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+  min-width: 1200px;
+}
+
+.progress_bar_box {
+  width: 800px;
+  height: 5px;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  left: 0px;
+}
+
+.active_bar {
+  height: 5px;
+  background-color: var(--main-color);
+  border-radius: 8px;
+  position: relative;
+  left: 0px;
+  z-index: 2;
+}
+
+.total_bar {
+  width: 800px;
+  height: 5px;
+  background-color: black;
+  border-radius: 8px;
+  position: absolute;
+  left: 0px;
+}

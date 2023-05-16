@@ -1,4 +1,12 @@
 .page {
   width: 100vw;
-  height: 100vh;
+  min-width: 1130px;
+  background-color: black;
+}
+.landing_image {
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: none;
+  margin-bottom: 87px;
 }
