@@ -1,0 +1,43 @@
+.container {
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 150px;
+}
+.logo_image {
+  height: fit-content;
+}
+.logo {
+  font-family: "Dokdo";
+  font-weight: 400;
+  font-size: 150px;
+  line-height: 100%;
+  text-align: center;
+  color: var(--main-color);
+  width: 496px;
+  height: 272px;
+  position: relative;
+  top: 71px;
+}
+
+.text_bold {
+  font-family: "SUIT-B";
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 160%;
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+
+.text_thin {
+  font-family: "SUIT-R";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: center;
+  color: white;
+}

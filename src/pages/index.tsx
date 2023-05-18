@@ -6,6 +6,7 @@ import landingImage from "../../public/png/landing_page.png";
 import Footer from "@/component/main/footer/footer";
 import Image from "next/image";
 import { defaultOptions } from "@/types";
+import Close from "@/component/main/close/close";
 
 export default function Main() {
   const router = useRouter();
@@ -24,21 +25,24 @@ export default function Main() {
 
   return (
     <div className={styles.page}>
-      <Welcome
-        email={email}
-        changeEmail={changeEmail}
-        clickReadig={clickNext}
-      />
-      <div className={styles.landing_image}></div>
-      <Image
-        alt="landing"
-        src={landingImage}
-        width="1440"
-        height={"1384"}
-        className={styles.landing_image}
-      />
-
-      <Footer email={email} changeEmail={changeEmail} clickReadig={clickNext} />
+      <Close />
     </div>
   );
+}
+{
+  /* <Welcome
+email={email}
+changeEmail={changeEmail}
+clickReadig={clickNext}
+/>
+<div className={styles.landing_image}></div>
+<Image
+alt="landing"
+src={landingImage}
+width="1440"
+height={"1384"}
+className={styles.landing_image}
+/>
+
+<Footer email={email} changeEmail={changeEmail} clickReadig={clickNext} /> */
 }
